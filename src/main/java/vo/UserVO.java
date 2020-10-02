@@ -15,6 +15,8 @@ public class UserVO {
     private Date lastLoginDate;
     private Character isActive;
 
+    public UserVO() {}
+
     public UserVO(Long userId, String name, String email, String phone, String taxGroup, String password, String salt, Date createDate, Date lastLoginDate, Character isActive) {
         this.userId = userId;
         this.name = name;
