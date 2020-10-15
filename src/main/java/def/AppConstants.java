@@ -18,7 +18,7 @@ public class AppConstants {
 
     public static void initializeProperties() throws IOException {
         Properties properties = new Properties();
-        properties.load(new FileReader(new File("D:/taxbook/target/taxbook/WEB-INF/classes/app.properties")));
+        properties.load(new FileReader(new File("C:\\Users\\Vodka\\Desktop\\Table\\Settings\\taxbook\\src\\main\\resources\\app.properties")));
         APP_LINK = properties.getProperty("APP_LINK");
         DB_LINK = properties.getProperty("DB_LINK");
         DB_NAME = properties.getProperty("DB_NAME");

@@ -10,21 +10,19 @@ public class UserVO {
     private String phone;
     private String taxGroup;
     private String password;
-    private String salt;
     private Date createDate;
     private Date lastLoginDate;
     private Character isActive;
 
     public UserVO() {}
 
-    public UserVO(Long userId, String name, String email, String phone, String taxGroup, String password, String salt, Date createDate, Date lastLoginDate, Character isActive) {
+    public UserVO(Long userId, String name, String email, String phone, String taxGroup, String password, Date createDate, Date lastLoginDate, Character isActive) {
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.taxGroup = taxGroup;
         this.password = password;
-        this.salt = salt;
         this.createDate = createDate;
         this.lastLoginDate = lastLoginDate;
         this.isActive = isActive;
@@ -78,13 +76,6 @@ public class UserVO {
         this.password = password;
     }
 
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
 
     public Date getCreateDate() {
         return createDate;
@@ -119,7 +110,6 @@ public class UserVO {
                 ", phone='" + phone + '\'' +
                 ", taxGroup='" + taxGroup + '\'' +
                 ", password='" + password + '\'' +
-                ", salt='" + salt + '\'' +
                 ", createDate=" + createDate +
                 ", lastLoginDate=" + lastLoginDate +
                 ", isActive=" + isActive +

@@ -29,7 +29,7 @@ public class UserServlet extends HttpServlet {
         try {
             //UserDTO userDTO = su.deserializeDTO(UserDTO.class);
             //UserVO userVO = userDTO;
-            UserVO userVO = new UserVO(1L,"1","2","3", "3", "5", "123", new Date(), new Date(), 'Y');
+            UserVO userVO = new UserVO(1L,"TEST","2","3", "3", "testingHash", new Date(), new Date(), 'Y');
             UserDelegate userDelegate = new UserDelegate();
             Long newUserId = userDelegate.addUser(userVO);
             su.sendDTO(200, newUserId);

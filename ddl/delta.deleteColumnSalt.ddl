@@ -1,0 +1,1 @@
+ALTER table taxbook.public.acl_user drop column salt;
