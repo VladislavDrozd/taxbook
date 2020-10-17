@@ -21,7 +21,7 @@ public class UserServlet extends HttpServlet {
             case ServletConstants.ADD_NEW_USER : actionAddNewUser(su); break;
             case ServletConstants.UPDATE_USER : actionUpdateUser(su); break;
 
-            default: su.sendDTO(401, "Unknow action name bla bla bla");
+            default: su.sendDTO(ServletConstants.STATUS_BAD_REQUEST, "Unknown action: " + param);
         }
     }
 
@@ -32,15 +32,20 @@ public class UserServlet extends HttpServlet {
             UserVO userVO = new UserVO(1L,"TEST","2","3", "3", "testingHash", new Date(), new Date(), 'Y');
             UserDelegate userDelegate = new UserDelegate();
             Long newUserId = userDelegate.addUser(userVO);
-            su.sendDTO(200, newUserId);
+            su.sendDTO(ServletConstants.STATUS_OK, newUserId);
         } catch (Exception e) {
-            log.error("Error in actionAddNewUser()", e);
+            log.error("SERVLET Cannot add new user. actionAddNewUser()", e);
             su.sendError(e.getMessage());
         }
     }
 
     private void actionUpdateUser(ServletUtil su) {
+        try {
 
+        } catch (Exception e) {
+            log.error("SERVLET Cannot add update user. actionAddNewUser()", e);
+            su.sendError(e.getMessage());
+        }
     }
 
 }

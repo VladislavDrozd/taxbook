@@ -1,22 +1,26 @@
 package dao;
 
-import def.DBPool;
 import org.apache.log4j.Logger;
-import util.ServletUtil;
 import vo.UserVO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDAO {
     private static final Logger log = Logger.getLogger(UserDAO.class);
 
+    private Connection connection;
+    public UserDAO(Connection connection) {
+        this.connection = connection;
+    }
+
     public Long addUser(UserVO vo) throws SQLException {
         String sql = "INSERT INTO acl_user (name, email, phone, tax_group, password, is_active) " +
                      "VALUES (?, ?, ?, ?::tax_group_enum, ?, ?) RETURNING user_id;";
-        try (PreparedStatement ps = DBPool.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, vo.getName());
             ps.setString(2, vo.getEmail());
             ps.setString(3, vo.getPhone());
@@ -30,9 +34,10 @@ public class UserDAO {
             }
             return userId;
         } catch (SQLException e) {
-            log.error("Cannot add user " + vo.getEmail() + " to Data Base: ", e);
+            log.error("DAO Cannot add new user to DB. addUser()", e);
             throw e;
         }
     }
+
 
 }

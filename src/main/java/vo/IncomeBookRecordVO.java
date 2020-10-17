@@ -1,12 +1,12 @@
 package vo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
-public class IncomeBookVO {
+public class IncomeBookRecordVO {
 
     private Long recordId;
     private Long userId;
-    private Date dateTime;
+    private Timestamp dateTime;
     private Double income;
     private Double refund;
     private Double revised;
@@ -17,7 +17,7 @@ public class IncomeBookVO {
     private String anotherProfitType;
     private Double anotherProfitIncome;
 
-    public IncomeBookVO(Long recordId, Long userId, Date dateTime, Double income, Double refund, Double revised, Double freeReceived, Double totalIncome, String notes, Long clientId, String anotherProfitType, Double anotherProfitIncome) {
+    public IncomeBookRecordVO(Long recordId, Long userId, Timestamp dateTime, Double income, Double refund, Double revised, Double freeReceived, Double totalIncome, String notes, Long clientId, String anotherProfitType, Double anotherProfitIncome) {
         this.recordId = recordId;
         this.userId = userId;
         this.dateTime = dateTime;
@@ -48,11 +48,11 @@ public class IncomeBookVO {
         this.userId = userId;
     }
 
-    public Date getDateTime() {
+    public Timestamp getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -130,7 +130,7 @@ public class IncomeBookVO {
 
     @Override
     public String toString() {
-        return "IncomeBookVO{" +
+        return "IncomeBookRecordVO{" +
                 "recordId=" + recordId +
                 ", userId=" + userId +
                 ", dateTime=" + dateTime +

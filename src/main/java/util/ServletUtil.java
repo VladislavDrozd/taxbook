@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import def.DBPool;
 import org.apache.log4j.Logger;
+import servlet.ServletConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +42,7 @@ public class ServletUtil {
         response.setCharacterEncoding("UTF-8");
         try {
             PrintWriter writer = response.getWriter();
-            response.setStatus(500);
+            response.setStatus(ServletConstants.STATUS_SERVER_ERROR);
             writer.write("Error on server: " + errorStr + " \nContact the administrator.");
         } catch (Exception e) {
             log.error("Error in sendDTO()", e);
@@ -100,4 +101,11 @@ public class ServletUtil {
         }
     }
 
+    public HttpServletRequest getRequest() {
+        return request;
+    }
+
+    public HttpServletResponse getResponse() {
+        return response;
+    }
 }
