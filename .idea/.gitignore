@@ -4,3 +4,6 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Default ignored files
+/shelf/
+/Logs/file.log

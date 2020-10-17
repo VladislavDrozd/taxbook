@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class ClientVO {
@@ -20,6 +22,16 @@ public class ClientVO {
         this.contacts = contacts;
         this.edrpou = edrpou;
         this.notes = notes;
+    }
+
+    public ClientVO(ResultSet rs) throws SQLException {
+        this.clientId = rs.getLong("client_id");
+        this.userId = rs.getLong("user_id");
+        this.createDate = rs.getDate("create_date");
+        this.name = rs.getString("name");
+        this.contacts = rs.getString("contacts");
+        this.edrpou = rs.getString("edrpou");
+        this.notes = rs.getString("notes");
     }
 
     public Long getClientId() {

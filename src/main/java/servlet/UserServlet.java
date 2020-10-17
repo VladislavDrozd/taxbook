@@ -17,12 +17,12 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletUtil su = new ServletUtil(req, resp);
-        String param = req.getParameter(ServletConstants.ACTION);
-        switch (param) {
+        String action = req.getParameter(ServletConstants.ACTION);
+        switch (action) {
             case ServletConstants.ADD_USER : actionAddNewUser(su); break;
             case ServletConstants.UPDATE_USER : actionUpdateUser(su); break;
 
-            default: su.sendDTO(ServletConstants.STATUS_BAD_REQUEST, "Unknown action: " + param);
+            default: su.sendDTO(ServletConstants.STATUS_BAD_REQUEST, "Unknown action: " + action);
         }
     }
 
@@ -45,8 +45,8 @@ public class UserServlet extends HttpServlet {
             UserDTO userDTO = su.deserializeDTO(UserDTO.class);
             UserVO userVO = userDTO;
             UserDelegate userDelegate = new UserDelegate();
-            Long updatedUserId = userDelegate.updateUser(userVO);
-            su.sendDTO(ServletConstants.STATUS_OK, updatedUserId);
+            int upd = userDelegate.updateUser(userVO);
+            su.sendDTO(ServletConstants.STATUS_OK, upd);
         } catch (Exception e) {
             log.error("SERVLET Cannot add update user. actionAddNewUser()", e);
             su.sendError(e.getMessage());

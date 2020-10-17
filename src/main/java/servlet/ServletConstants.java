@@ -11,6 +11,11 @@ public class ServletConstants {
     public static final String ADD_USER = "addUser";
     public static final String UPDATE_USER = "updateUser";
 
+    /** ClientServlet */
+    public static final String ADD_CLIENT = "addClient";
+    public static final String UPDATE_CLIENT = "updateClient";
+    public static final String GET_CLIENT_BY_ID = "getClientById";
+
     /** TestServlet */
-    public static final String generateIncomeBookData = "generateRecords";
+    public static final String GENERATE_INCOME_BOOK_DATA = "generateRecords";
 }

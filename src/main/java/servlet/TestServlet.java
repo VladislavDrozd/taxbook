@@ -18,11 +18,11 @@ public class TestServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
         ServletUtil su = new ServletUtil(req, resp);
-        String param = req.getParameter(ServletConstants.ACTION);
-        switch (param) {
+        String action = req.getParameter(ServletConstants.ACTION);
+        switch (action) {
             //http://localhost:8080/taxbook/test?action=generateRecords&uId=1&q=10
-            case ServletConstants.generateIncomeBookData : actionGenerateIncomeBookData(su); break;
-            default: su.sendDTO(ServletConstants.STATUS_BAD_REQUEST, "Unknown action: " + param);
+            case ServletConstants.GENERATE_INCOME_BOOK_DATA : actionGenerateIncomeBookData(su); break;
+            default: su.sendDTO(ServletConstants.STATUS_BAD_REQUEST, "Unknown action: " + action);
         }
     }
 

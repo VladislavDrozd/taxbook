@@ -65,7 +65,7 @@ public class UserDelegate {
         }
     }
 
-    public Long updateUser(UserVO userVO) throws Exception {
+    public int updateUser(UserVO userVO) throws Exception {
         Connection connection = null;
         try {
             connection = DBPool.getConnection();

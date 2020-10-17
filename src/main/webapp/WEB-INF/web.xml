@@ -26,6 +26,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ClientServlet</servlet-name>
+        <servlet-class>servlet.ClientServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientServlet</servlet-name>
+        <url-pattern>/client</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>servlet.TestServlet</servlet-class>
     </servlet>
