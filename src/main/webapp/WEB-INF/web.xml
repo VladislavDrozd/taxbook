@@ -35,6 +35,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>IncomeBookRecordServlet</servlet-name>
+        <servlet-class>servlet.IncomeBookRecordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IncomeBookRecordServlet</servlet-name>
+        <url-pattern>/record</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>servlet.TestServlet</servlet-class>
     </servlet>

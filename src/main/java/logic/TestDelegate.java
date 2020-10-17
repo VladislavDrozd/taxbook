@@ -20,7 +20,7 @@ public class TestDelegate {
             connection = DBPool.getConnection();
             DBPool.startTransaction(connection);
             IncomeBookRecordDAO recordDAO = new IncomeBookRecordDAO(connection);
-            recordDAO.addListOfIncomeBoorRecords(generateTestRecords(userId, quantity));
+            recordDAO.addListOfIncomeBookRecordsTest(generateTestRecords(userId, quantity));
             DBPool.commitTransaction(connection);
         } catch (Exception e) {
             DBPool.rollbackTransaction(connection);

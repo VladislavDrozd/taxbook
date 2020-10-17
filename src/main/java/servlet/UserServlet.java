@@ -15,7 +15,7 @@ import java.util.Date;
 public class UserServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(UserServlet.class);
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) {
         ServletUtil su = new ServletUtil(req, resp);
         String action = req.getParameter(ServletConstants.ACTION);
         switch (action) {
