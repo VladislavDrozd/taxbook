@@ -20,16 +20,40 @@ public class DBPool {
         try {
             return pool.getConnection();
         } catch (SQLException e) {
-            log.error("Cannot get connection from pool", e);
+            log.error("DBPool Cannot get connection from pool", e);
             throw e;
         }
     }
 
     public static void closeConnection(Connection connection) {
         try {
-            connection.close();
+            if (connection != null) connection.close();
         } catch (SQLException e) {
-            log.error("Cannot close connection", e);
+            log.error("DBPool Cannot close connection", e);
+        }
+    }
+
+    public static void startTransaction(Connection connection) {
+        try {
+            if (connection != null) connection.setAutoCommit(false);
+        } catch (SQLException e) {
+            log.error("DBPool Cannot start transaction", e);
+        }
+    }
+
+    public static void commitTransaction(Connection connection) {
+        try {
+            if (connection != null) connection.commit();
+        } catch (SQLException e) {
+            log.error("DBPool Cannot commit transaction", e);
+        }
+    }
+
+    public static void rollbackTransaction(Connection connection) {
+        try {
+            if (connection != null) connection.rollback();
+        } catch (SQLException e) {
+            log.error("DBPool Cannot rollback transaction", e);
         }
     }
 

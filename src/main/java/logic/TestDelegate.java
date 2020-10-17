@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import vo.IncomeBookRecordVO;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,16 +15,19 @@ public class TestDelegate {
     private static final Logger log = Logger.getLogger(TestDelegate.class);
 
     public void generateIncomeBookData(Long userId, int quantity) throws Exception {
+        Connection connection = null;
         try {
-            Connection connection = DBPool.getConnection();
-            connection.setAutoCommit(false);
+            connection = DBPool.getConnection();
+            DBPool.startTransaction(connection);
             IncomeBookRecordDAO recordDAO = new IncomeBookRecordDAO(connection);
             recordDAO.addListOfIncomeBoorRecords(generateTestRecords(userId, quantity));
-            connection.commit();
-            DBPool.closeConnection(connection);
+            DBPool.commitTransaction(connection);
         } catch (Exception e) {
+            DBPool.rollbackTransaction(connection);
             log.error("DELEGATE TEST Cannot generate test income book data. generateIncomeBookData()", e);
             throw e;
+        } finally {
+            DBPool.closeConnection(connection);
         }
     }
 

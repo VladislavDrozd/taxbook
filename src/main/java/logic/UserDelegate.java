@@ -21,8 +21,9 @@ public class UserDelegate {
     private static final Logger log = Logger.getLogger(UserDelegate.class);
 
     public Long addUser(UserVO userVO) throws Exception {
+        Connection connection = null;
         try {
-            Connection connection = DBPool.getConnection();
+            connection = DBPool.getConnection();
             UserDAO userDAO = new UserDAO(connection);
 
             // some vova`s logic
@@ -55,13 +56,26 @@ public class UserDelegate {
             /* argon.getArgon2().verify(hash, userPassword);*/
 
 
-
-            Long userId = userDAO.addUser(userVO);
-            DBPool.closeConnection(connection);
-            return userId;
+            return userDAO.addUser(userVO);
         } catch (Exception e) {
             log.error("DELEGATE Cannot add new acl_user. addUser()", e);
             throw e;
+        } finally {
+            DBPool.closeConnection(connection);
+        }
+    }
+
+    public Long updateUser(UserVO userVO) throws Exception {
+        Connection connection = null;
+        try {
+            connection = DBPool.getConnection();
+            UserDAO userDAO = new UserDAO(connection);
+            return userDAO.updateUser(userVO);
+        } catch (Exception e) {
+            log.error("DELEGATE Cannot update acl_user. updateUser()", e);
+            throw e;
+        } finally {
+            DBPool.closeConnection(connection);
         }
     }
 
