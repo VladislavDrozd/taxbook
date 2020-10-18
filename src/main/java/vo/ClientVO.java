@@ -34,6 +34,10 @@ public class ClientVO {
         this.notes = rs.getString("notes");
     }
 
+    public ClientVO() {
+
+    }
+
     public Long getClientId() {
         return clientId;
     }

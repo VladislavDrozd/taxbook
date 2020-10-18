@@ -3,10 +3,12 @@ package logic;
 import dao.ClientDAO;
 import dao.IncomeBookRecordDAO;
 import def.DBPool;
+import filter.ClientFilter;
 import org.apache.log4j.Logger;
 import vo.ClientVO;
 
 import java.sql.Connection;
+import java.util.List;
 
 public class ClientDelegate {
     private static final Logger log = Logger.getLogger(ClientDelegate.class);
@@ -47,6 +49,20 @@ public class ClientDelegate {
             return clientDAO.getClientById(clientId);
         } catch (Exception e) {
             log.error("DELEGATE Cannot get client by ID. getClientById()", e);
+            throw e;
+        } finally {
+            DBPool.closeConnection(connection);
+        }
+    }
+
+    public List<ClientVO> getClientListByFilter(Long userId, ClientFilter filter) throws Exception {
+        Connection connection = null;
+        try {
+            connection = DBPool.getConnection();
+            ClientDAO clientDAO = new ClientDAO(connection);
+            return clientDAO.getClientListByFilter(userId, filter);
+        } catch (Exception e) {
+            log.error("DELEGATE Cannot get client by filter. getClientListByFilter()", e);
             throw e;
         } finally {
             DBPool.closeConnection(connection);

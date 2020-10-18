@@ -1,13 +1,14 @@
 package dao;
 
+import filter.ClientFilter;
 import org.apache.log4j.Logger;
 import vo.ClientVO;
 import vo.UserVO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClientDAO {
     private static final Logger log = Logger.getLogger(ClientDAO.class);
@@ -49,7 +50,7 @@ public class ClientDAO {
             ps.setLong(5, vo.getClientId());
             return ps.executeUpdate();
         } catch (SQLException e) {
-            log.error("DAO Cannot add new client to DB. addUser()", e);
+            log.error("DAO Cannot update client to DB. updateClient()", e);
             throw e;
         }
     }
@@ -65,9 +66,47 @@ public class ClientDAO {
             }
             return clientVO;
         } catch (SQLException e) {
-            log.error("DAO Cannot add new client to DB. addUser()", e);
+            log.error("DAO Cannot get client by id from DB. getClientById()", e);
             throw e;
         }
+    }
+
+    public List<ClientVO> getClientListByFilter(Long userId, ClientFilter filter) throws SQLException {
+        String sql = "SELECT * FROM client WHERE user_id = " + userId + getFilterWhereClauseQueryString(filter);
+        try (Statement statement = connection.createStatement()) {
+            ResultSet rs  = statement.executeQuery(sql);
+            List<ClientVO> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(new ClientVO(rs));
+            }
+            return list;
+        } catch (SQLException e) {
+            log.error("DAO Cannot get clients by filter from DB. getClientListByFilter()", e);
+            throw e;
+        }
+    }
+
+    private String getFilterWhereClauseQueryString(ClientFilter filter) {
+        List<String> strings = new ArrayList<>();
+        if (filter.getCreateDateFrom() != null) {
+            strings.add("create_date > '" + filter.getCreateDateFrom() + "'");
+        }
+        if (filter.getCreateDateTo() != null) {
+            strings.add("create_date > '" + filter.getCreateDateTo() + "'");
+        }
+        if (filter.getContacts() != null && !filter.getContacts().isEmpty()) {
+            strings.add("contacts ILIKE '%" + filter.getContacts() + "%' ");
+        }
+        if (filter.getClientId() != null) {
+            strings.add("client_id = " + filter.getClientId());
+        }
+
+        if (strings.size() == 0) {
+            return "";
+        } else {
+            return " AND ".concat(String.join(" AND ", strings));
+        }
+
     }
 
 }
