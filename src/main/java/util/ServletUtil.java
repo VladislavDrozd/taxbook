@@ -26,6 +26,10 @@ public class ServletUtil {
     private HttpServletRequest request;
     private HttpServletResponse response;
 
+    public Long getSessionUserId() {
+        return (Long) request.getAttribute(ServletConstants.ATTRIBUTE_NAME_USER_ID);
+    }
+
     public <OUT>void sendDTO(int statusCode, OUT dto) {
         response.setCharacterEncoding("UTF-8");
         ObjectMapper objectMapper = new ObjectMapper();

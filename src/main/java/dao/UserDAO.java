@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserDAO {
     private static final Logger log = Logger.getLogger(UserDAO.class);
@@ -38,6 +40,24 @@ public class UserDAO {
         }
     }
 
+    public Map<String, String> getUserIdAndHashPasswordForLogin(String loginName) throws SQLException {
+        Map<String, String> map = new HashMap<>();
+        String sql = "SELECT user_id, password FROM acl_user " +
+                "WHERE email = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, loginName);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                map.put("userId", rs.getString("user_id"));
+                map.put("hashPassword", rs.getString("password"));
+            }
+            return map;
+        } catch (SQLException e) {
+            log.error("DAO Cannot get password and userId for login user from DB. getUserIdAndHashPasswordForLogin()", e);
+            throw e;
+        }
+    }
+
 
     public int updateUser(UserVO vo) throws SQLException {
         String sql = "UPDATE acl_user SET name = ?, email = ?, phone = ?, tax_group = ? " +
@@ -54,4 +74,31 @@ public class UserDAO {
             throw e;
         }
     }
+
+    public boolean checkIfUserEmailIsAlreadyExists(String email) throws SQLException {
+        String sql = "SELECT * FROM acl_user WHERE email = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            log.error("DAO Cannot check if User email is already exists in DB. checkIfUserEmailIsAlreadyExists()", e);
+            throw e;
+        }
+    }
+
+    public UserVO getUserById(Long userId) throws SQLException {
+        String sql = "SELECT * FROM acl_user WHERE user_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+            ResultSet rs = ps.executeQuery();
+            UserVO userVO = null;
+            if (rs.next()) userVO = new UserVO(rs);
+            return userVO;
+        } catch (SQLException e) {
+            log.error("DAO Cannot get user by id from DB. getUserById()", e);
+            throw e;
+        }
+    }
+
 }

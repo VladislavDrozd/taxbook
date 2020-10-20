@@ -9,8 +9,11 @@ import vo.UserVO;
 /* Argon Types */
 import java.io.Console;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Map;
+
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
@@ -65,6 +68,47 @@ public class UserDelegate {
         }
     }
 
+
+    public Long loginUser(String loginName, String password) throws Exception {
+        Connection connection = null;
+        try {
+            connection = DBPool.getConnection();
+            UserDAO userDAO = new UserDAO(connection);
+            Map<String, String> userIdAndHashPasswordFromDB = userDAO.getUserIdAndHashPasswordForLogin(loginName);
+            Long userId = Long.parseLong(userIdAndHashPasswordFromDB.get("userId"));
+            String passwordDBHash = userIdAndHashPasswordFromDB.get("hashPassword");
+
+            boolean isPasswordMatch = ArgonInitialize.getInstance()
+                    .getArgon2().verify(passwordDBHash, password);
+
+            if (!isPasswordMatch) {
+                return null;
+            } else {
+                return userId;
+            }
+        } catch (Exception e) {
+            log.error("DELEGATE Cannot login acl_user with " +
+                    "loginName = " + loginName + " and password = " + password + ". updateUser()", e);
+            throw e;
+        } finally {
+            DBPool.closeConnection(connection);
+        }
+    }
+
+    public boolean checkIfUserEmailIsAlreadyExists(String email) throws Exception {
+        Connection connection = null;
+        try {
+            connection = DBPool.getConnection();
+            UserDAO userDAO = new UserDAO(connection);
+            return userDAO.checkIfUserEmailIsAlreadyExists(email);
+        } catch (Exception e) {
+            log.error("DELEGATE Cannot check if user email is already exist. checkIfUserEmailIsAlreadyExists()", e);
+            throw e;
+        } finally {
+            DBPool.closeConnection(connection);
+        }
+    }
+
     public int updateUser(UserVO userVO) throws Exception {
         Connection connection = null;
         try {
@@ -73,6 +117,20 @@ public class UserDelegate {
             return userDAO.updateUser(userVO);
         } catch (Exception e) {
             log.error("DELEGATE Cannot update acl_user. updateUser()", e);
+            throw e;
+        } finally {
+            DBPool.closeConnection(connection);
+        }
+    }
+
+    public UserVO getUserById(Long userId) throws Exception {
+        Connection connection = null;
+        try {
+            connection = DBPool.getConnection();
+            UserDAO userDAO = new UserDAO(connection);
+            return userDAO.getUserById(userId);
+        } catch (Exception e) {
+            log.error("DELEGATE Cannot get acl_user by id. getUserById()", e);
             throw e;
         } finally {
             DBPool.closeConnection(connection);

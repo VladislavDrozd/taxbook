@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class UserVO {
@@ -26,6 +28,17 @@ public class UserVO {
         this.createDate = createDate;
         this.lastLoginDate = lastLoginDate;
         this.isActive = isActive;
+    }
+
+    public UserVO(ResultSet rs) throws SQLException {
+        this.userId = rs.getLong("user_id");
+        this.name = rs.getString("name");
+        this.email = rs.getString("email");
+        this.phone = rs.getString("phone");
+        this.taxGroup = rs.getString("tax_group");
+        this.createDate = rs.getDate("create_date");
+        this.lastLoginDate = rs.getDate("last_login_date");
+        this.isActive = rs.getString("is_active").charAt(0);
     }
 
     public Long getUserId() {
