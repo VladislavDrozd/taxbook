@@ -86,7 +86,7 @@ public class IncomeBookRecordDAO {
         String sql = "SELECT * FROM income_book WHERE user_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, userId);
-            ResultSet rs = ps.executeQuery(sql);
+            ResultSet rs = ps.executeQuery();
             List<IncomeBookRecordVO> incomeBookRecordVOList = new ArrayList<>();
             while (rs.next()) {
                 incomeBookRecordVOList.add(new IncomeBookRecordVO(rs));

@@ -74,7 +74,7 @@ public class ClientDAO {
         String sql = "SELECT * FROM client WHERE user_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, userId);
-            ResultSet rs  = ps.executeQuery(sql);
+            ResultSet rs  = ps.executeQuery();
             List<ClientVO> list = new ArrayList<>();
             while (rs.next()) {
                 list.add(new ClientVO(rs));
