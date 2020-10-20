@@ -1,0 +1,1 @@
+ALTER TABLE acl_user ADD CONSTRAINT unique_email_constrain UNIQUE(email);
