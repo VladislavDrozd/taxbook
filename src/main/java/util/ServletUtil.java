@@ -27,7 +27,8 @@ public class ServletUtil {
     private HttpServletResponse response;
 
     public Long getSessionUserId() {
-        return (Long) request.getAttribute(ServletConstants.ATTRIBUTE_NAME_USER_ID);
+        return (Long) request.getSession(false)
+                .getAttribute(ServletConstants.ATTRIBUTE_NAME_USER_ID);
     }
     public String getParameter(String parameterName) {
         return request.getParameter(parameterName);

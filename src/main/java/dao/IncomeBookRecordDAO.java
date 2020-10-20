@@ -117,7 +117,6 @@ public class IncomeBookRecordDAO {
         String sql = "INSERT INTO income_book " +
                 "(user_id, date_time, income, refund, revised, free_received, total_income, notes) " +
                 "VALUES " + recordListToString(records);
-        System.out.println(sql);
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
         } catch (SQLException e) {
