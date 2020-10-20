@@ -5,10 +5,7 @@ import org.apache.log4j.Logger;
 import util.ServletUtil;
 import vo.UserVO;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.util.Date;
 
 public class LoginLogoutServlet extends HttpServlet {
@@ -30,7 +27,7 @@ public class LoginLogoutServlet extends HttpServlet {
         try {
             String loginName = su.getRequest().getParameter("loginName");
             String password = su.getRequest().getParameter("password");
-            //String language = su.getRequest().getParameter("language");
+            //String language = su.getRequest().getParameter(ServletConstants.COOKIE_NAME_LANGUAGE);
             String language = ServletConstants.LANGUAGE_UA; // now default
 
             UserDelegate userDelegate = new UserDelegate();
@@ -44,7 +41,7 @@ public class LoginLogoutServlet extends HttpServlet {
 
             HttpSession session = su.getRequest().getSession(true);
             session.setAttribute(ServletConstants.ATTRIBUTE_NAME_USER_ID, userId);
-            session.setAttribute(ServletConstants.ATTRIBUTE_NAME_LANGUAGE, language);
+            su.getResponse().addCookie(new Cookie(ServletConstants.COOKIE_NAME_LANGUAGE, language));
 
             log.info("User logged in: login name = " + loginName + " , password = " + password);
             su.getResponse().sendRedirect(ServletConstants.APP_LINK + "html/incomeBook.component.html");
@@ -70,7 +67,7 @@ public class LoginLogoutServlet extends HttpServlet {
             UserVO userVO = new UserVO(1L,"TEST","email","3", "3", "password", new Date(), new Date(), 'Y');
             UserDelegate userDelegate = new UserDelegate();
 
-            //String language = su.getRequest().getParameter("language");
+            //String language = su.getRequest().getParameter(ServletConstants.COOKIE_NAME_LANGUAGE);
             String language = ServletConstants.LANGUAGE_UA; // now default
 
             //check if new user`s email already exists in database
@@ -81,7 +78,7 @@ public class LoginLogoutServlet extends HttpServlet {
                 Long userId = userDelegate.addUser(userVO);
                 HttpSession session = su.getRequest().getSession(true);
                 session.setAttribute(ServletConstants.ATTRIBUTE_NAME_USER_ID, userId);
-                session.setAttribute(ServletConstants.ATTRIBUTE_NAME_LANGUAGE, language);
+                su.getResponse().addCookie(new Cookie(ServletConstants.COOKIE_NAME_LANGUAGE, language));
                 log.info("Register new user: name = " + userVO.getName() + ", email = " + userVO.getEmail() + " ");
                 su.getResponse().sendRedirect(ServletConstants.APP_LINK + "html/incomeBook.component.html");
             }

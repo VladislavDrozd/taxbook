@@ -4,8 +4,8 @@ public class ServletConstants {
 
     public static final String APP_LINK = "http://localhost:8080/taxbook/";
 
-    public static final String LANGUAGE_UA = "ukrainian";
-    public static final String LANGUAGE_EN = "english";
+    public static final String LANGUAGE_UA = "ua";
+    public static final String LANGUAGE_EN = "en";
 
     public static final String ACTION = "action";
     public static final int STATUS_OK = 200;
@@ -15,7 +15,7 @@ public class ServletConstants {
 
     /** Attribute names */
     public static final String ATTRIBUTE_NAME_USER_ID = "userId";
-    public static final String ATTRIBUTE_NAME_LANGUAGE = "language";
+    public static final String COOKIE_NAME_LANGUAGE = "language";
 
     /** LoginLogoutServlet */
     public static final String LOGIN = "login";
