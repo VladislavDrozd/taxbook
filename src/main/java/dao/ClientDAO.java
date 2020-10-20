@@ -71,7 +71,8 @@ public class ClientDAO {
     }
 
     public List<ClientVO> getAllClients(Long userId) throws SQLException {
-        String sql = "SELECT * FROM client WHERE user_id = ?";
+        String sql = "SELECT * FROM client WHERE user_id = ? " +
+                "ORDER BY create_date DESC";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, userId);
             ResultSet rs  = ps.executeQuery();
@@ -87,7 +88,8 @@ public class ClientDAO {
     }
 
     public List<ClientVO> getClientListByFilter(Long userId, ClientFilter filter) throws SQLException {
-        String sql = "SELECT * FROM client WHERE user_id = " + userId + getFilterWhereClauseQueryString(filter);
+        String sql = "SELECT * FROM client WHERE user_id = " + userId + getFilterWhereClauseQueryString(filter) + " " +
+                "ORDER BY create_date DESC";
         try (Statement statement = connection.createStatement()) {
             ResultSet rs  = statement.executeQuery(sql);
             List<ClientVO> list = new ArrayList<>();

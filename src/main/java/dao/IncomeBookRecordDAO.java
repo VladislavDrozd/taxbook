@@ -83,7 +83,8 @@ public class IncomeBookRecordDAO {
     }
 
     public List<IncomeBookRecordVO> getAllRecords(Long userId) throws SQLException {
-        String sql = "SELECT * FROM income_book WHERE user_id = ?";
+        String sql = "SELECT * FROM income_book WHERE user_id = ? " +
+                "ORDER BY date_time DESC";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, userId);
             ResultSet rs = ps.executeQuery();
@@ -99,7 +100,8 @@ public class IncomeBookRecordDAO {
     }
 
     public List<IncomeBookRecordVO> getRecordsByFilter(Long userId, IncomeBookRecordFilter filter) throws SQLException {
-        String sql = "SELECT * FROM income_book WHERE user_id = " + userId + getFilterWhereClauseQueryString(filter);
+        String sql = "SELECT * FROM income_book WHERE user_id = " + userId + getFilterWhereClauseQueryString(filter) + " " +
+                "ORDER BY date_time DESC";
         try (Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
             List<IncomeBookRecordVO> incomeBookRecordVOList = new ArrayList<>();
