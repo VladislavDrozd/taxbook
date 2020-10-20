@@ -30,11 +30,15 @@ public class ServletConstants {
     public static final String ADD_CLIENT = "addClient";
     public static final String UPDATE_CLIENT = "updateClient";
     public static final String GET_CLIENT_BY_ID = "getClientById";
+    public static final String GET_ALL_CLIENTS = "getAllClients";
+    public static final String GET_CLIENTS_BY_FILTER = "getClientsByFilter";
 
     /** IncomeBookRecordServlet*/
     public static final String ADD_RECORD = "addRecord";
     public static final String UPDATE_RECORD = "updateRecord";
     public static final String DELETE_RECORD = "deleteRecord";
+    public static final String GET_ALL_RECORDS = "getAllRecords";
+    public static final String GET_RECORDS_BY_FILTER = "getRecordsByFilter";
 
     /** TestServlet */
     public static final String GENERATE_INCOME_BOOK_DATA = "generateRecords";

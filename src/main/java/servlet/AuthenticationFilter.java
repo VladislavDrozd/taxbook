@@ -1,7 +1,5 @@
 package servlet;
 
-import org.apache.log4j.Logger;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,16 +17,17 @@ public class AuthenticationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
         HttpSession session = httpServletRequest.getSession(false);
         if (session == null) {
             // redirect to error unauthorised page
-            System.out.println("NOT LOGIN");
+            httpServletResponse.sendError(ServletConstants.STATUS_UNAUTHORIZED);
         } else {
             Long userId = (Long) session.getAttribute("userId");
             if (userId == null) {
                 // redirect to error unauthorised page
-                System.out.println("NOT LOGIN");
+                httpServletResponse.sendError(ServletConstants.STATUS_UNAUTHORIZED);
             } else {
                 chain.doFilter(request, response);
             }

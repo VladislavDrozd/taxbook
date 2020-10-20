@@ -75,7 +75,13 @@ public class UserDelegate {
             connection = DBPool.getConnection();
             UserDAO userDAO = new UserDAO(connection);
             Map<String, String> userIdAndHashPasswordFromDB = userDAO.getUserIdAndHashPasswordForLogin(loginName);
-            Long userId = Long.parseLong(userIdAndHashPasswordFromDB.get("userId"));
+
+            Long userId;
+            String uId = userIdAndHashPasswordFromDB.get("userId");
+            if (uId != null) {
+                userId = Long.parseLong(uId);
+            } else return null;
+
             String passwordDBHash = userIdAndHashPasswordFromDB.get("hashPassword");
 
             boolean isPasswordMatch = ArgonInitialize.getInstance()
@@ -109,12 +115,12 @@ public class UserDelegate {
         }
     }
 
-    public int updateUser(UserVO userVO) throws Exception {
+    public int updateUser(Long userId, UserVO userVO) throws Exception {
         Connection connection = null;
         try {
             connection = DBPool.getConnection();
             UserDAO userDAO = new UserDAO(connection);
-            return userDAO.updateUser(userVO);
+            return userDAO.updateUser(userId, userVO);
         } catch (Exception e) {
             log.error("DELEGATE Cannot update acl_user. updateUser()", e);
             throw e;

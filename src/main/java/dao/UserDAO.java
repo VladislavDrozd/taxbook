@@ -59,7 +59,7 @@ public class UserDAO {
     }
 
 
-    public int updateUser(UserVO vo) throws SQLException {
+    public int updateUser(Long userId, UserVO vo) throws SQLException {
         String sql = "UPDATE acl_user SET name = ?, email = ?, phone = ?, tax_group = ? " +
                 "WHERE user_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -67,7 +67,7 @@ public class UserDAO {
             ps.setString(2, vo.getEmail());
             ps.setString(3, vo.getPhone());
             ps.setString(4, vo.getTaxGroup());
-            ps.setLong(5, vo.getUserId());
+            ps.setLong(5, userId);
             return ps.executeUpdate();
         } catch (SQLException e) {
             log.error("DAO Cannot update user to DB. updateUser()", e);

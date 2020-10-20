@@ -1,5 +1,4 @@
 package servlet;
-import dto.UserDTO;
 import logic.UserDelegate;
 import org.apache.log4j.Logger;
 import util.ServletUtil;
@@ -40,10 +39,10 @@ public class UserServlet extends HttpServlet {
 
     private void actionUpdateUser(ServletUtil su) {
         try {
-            UserDTO userDTO = su.deserializeDTO(UserDTO.class);
-            UserVO userVO = userDTO;
+            Long userId = su.getSessionUserId();
+            UserVO userVO = su.deserializeDTO(UserVO.class);;
             UserDelegate userDelegate = new UserDelegate();
-            int upd = userDelegate.updateUser(userVO);
+            int upd = userDelegate.updateUser(userId, userVO);
             su.sendDTO(ServletConstants.STATUS_OK, upd);
         } catch (Exception e) {
             log.error("SERVLET Cannot add update user. actionAddNewUser()", e);

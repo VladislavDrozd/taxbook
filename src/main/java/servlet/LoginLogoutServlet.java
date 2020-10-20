@@ -25,25 +25,29 @@ public class LoginLogoutServlet extends HttpServlet {
 
     private void actionLogin(ServletUtil su) {
         try {
-            String loginName = su.getRequest().getParameter("loginName");
+            String name = su.getRequest().getParameter("name");
             String password = su.getRequest().getParameter("password");
-            //String language = su.getRequest().getParameter(ServletConstants.COOKIE_NAME_LANGUAGE);
-            String language = ServletConstants.LANGUAGE_UA; // now default
+
+            String languageParameter = su.getParameter(ServletConstants.COOKIE_NAME_LANGUAGE);
+            String language = languageParameter != null ? languageParameter : ServletConstants.LANGUAGE_UA;
 
             UserDelegate userDelegate = new UserDelegate();
-            Long userId = userDelegate.loginUser(loginName, password);
+            Long userId = userDelegate.loginUser(name, password);
 
             if (userId == null) {
-                log.info("Access denied for: login name = " + loginName + " , password = " + password);
+                log.info("Access denied for: login name = " + name + " , password = " + password);
                 su.sendDTO(ServletConstants.STATUS_UNAUTHORIZED, "Wrong login name or password");
                 return;
             }
 
             HttpSession session = su.getRequest().getSession(true);
             session.setAttribute(ServletConstants.ATTRIBUTE_NAME_USER_ID, userId);
-            su.getResponse().addCookie(new Cookie(ServletConstants.COOKIE_NAME_LANGUAGE, language));
 
-            log.info("User logged in: login name = " + loginName + " , password = " + password);
+            Cookie languageCookie = new Cookie(ServletConstants.COOKIE_NAME_LANGUAGE, language);
+            languageCookie.setMaxAge(-1); // до конца сессии
+            su.getResponse().addCookie(languageCookie);
+
+            log.info("User logged in: login name = " + name + " , password = " + password);
             su.getResponse().sendRedirect(ServletConstants.APP_LINK + "html/incomeBook.component.html");
         } catch (Exception e) {
             log.error("SERVLET LOGIN Cannot login session. actionLogin()", e);
@@ -62,13 +66,19 @@ public class LoginLogoutServlet extends HttpServlet {
 
     private void actionRegister(ServletUtil su) {
         try {
-            //UserDTO userDTO = su.deserializeDTO(UserDTO.class);
-            //UserVO userVO = userDTO;
-            UserVO userVO = new UserVO(1L,"TEST","email","3", "3", "password", new Date(), new Date(), 'Y');
-            UserDelegate userDelegate = new UserDelegate();
+            String name = su.getParameter("name");
+            String email = su.getParameter("email");
+            String phone = su.getParameter("phone");
+            String taxGroup = su.getParameter("taxGroup");
+            String password = su.getParameter("password");
 
-            //String language = su.getRequest().getParameter(ServletConstants.COOKIE_NAME_LANGUAGE);
-            String language = ServletConstants.LANGUAGE_UA; // now default
+            String languageParameter = su.getParameter(ServletConstants.COOKIE_NAME_LANGUAGE);
+            String language = languageParameter != null ? languageParameter : ServletConstants.LANGUAGE_UA;
+
+
+            UserVO userVO = new UserVO(null, name, email, phone,
+                    taxGroup, password, new Date(), new Date(), 'Y');
+            UserDelegate userDelegate = new UserDelegate();
 
             //check if new user`s email already exists in database
             boolean isEmailIsAlreadyExists = userDelegate.checkIfUserEmailIsAlreadyExists(userVO.getEmail());
@@ -78,7 +88,9 @@ public class LoginLogoutServlet extends HttpServlet {
                 Long userId = userDelegate.addUser(userVO);
                 HttpSession session = su.getRequest().getSession(true);
                 session.setAttribute(ServletConstants.ATTRIBUTE_NAME_USER_ID, userId);
-                su.getResponse().addCookie(new Cookie(ServletConstants.COOKIE_NAME_LANGUAGE, language));
+                Cookie languageCookie = new Cookie(ServletConstants.COOKIE_NAME_LANGUAGE, language);
+                languageCookie.setMaxAge(-1); // до конца сессии
+                su.getResponse().addCookie(languageCookie);
                 log.info("Register new user: name = " + userVO.getName() + ", email = " + userVO.getEmail() + " ");
                 su.getResponse().sendRedirect(ServletConstants.APP_LINK + "html/incomeBook.component.html");
             }

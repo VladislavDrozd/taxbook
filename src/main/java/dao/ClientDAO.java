@@ -3,12 +3,10 @@ package dao;
 import filter.ClientFilter;
 import org.apache.log4j.Logger;
 import vo.ClientVO;
-import vo.UserVO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ClientDAO {
     private static final Logger log = Logger.getLogger(ClientDAO.class);
@@ -18,11 +16,11 @@ public class ClientDAO {
         this.connection = connection;
     }
 
-    public Long addClient(ClientVO vo) throws SQLException {
+    public Long addClient(Long userId, ClientVO vo) throws SQLException {
         String sql = "INSERT INTO client (user_id, create_date, name, contacts, edrpou, notes) " +
                 "VALUES (?, NOW(), ?, ?, ?, ?) RETURNING user_id;";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, vo.getUserId());
+            ps.setLong(1, userId);
             ps.setString(2, vo.getName());
             ps.setString(3, vo.getContacts());
             ps.setString(4, vo.getEdrpou());
@@ -39,15 +37,16 @@ public class ClientDAO {
         }
     }
 
-    public int updateClient(ClientVO vo) throws SQLException {
+    public int updateClient(Long userId, ClientVO vo) throws SQLException {
         String sql = "UPDATE client SET name = ?, contacts = ?, edrpou = ?, notes = ? " +
-                "WHERE client_id = ?";
+                "WHERE client_id = ? AND user_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, vo.getName());
             ps.setString(2, vo.getContacts());
             ps.setString(3, vo.getEdrpou());
             ps.setString(4, vo.getNotes());
             ps.setLong(5, vo.getClientId());
+            ps.setLong(6, userId);
             return ps.executeUpdate();
         } catch (SQLException e) {
             log.error("DAO Cannot update client to DB. updateClient()", e);
@@ -71,6 +70,22 @@ public class ClientDAO {
         }
     }
 
+    public List<ClientVO> getAllClients(Long userId) throws SQLException {
+        String sql = "SELECT * FROM client WHERE user_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+            ResultSet rs  = ps.executeQuery(sql);
+            List<ClientVO> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(new ClientVO(rs));
+            }
+            return list;
+        } catch (SQLException e) {
+            log.error("DAO Cannot get all clients from DB. getAllClients()", e);
+            throw e;
+        }
+    }
+
     public List<ClientVO> getClientListByFilter(Long userId, ClientFilter filter) throws SQLException {
         String sql = "SELECT * FROM client WHERE user_id = " + userId + getFilterWhereClauseQueryString(filter);
         try (Statement statement = connection.createStatement()) {
@@ -89,10 +104,10 @@ public class ClientDAO {
     private String getFilterWhereClauseQueryString(ClientFilter filter) {
         List<String> strings = new ArrayList<>();
         if (filter.getCreateDateFrom() != null) {
-            strings.add("create_date > '" + filter.getCreateDateFrom() + "'");
+            strings.add("create_date >= '" + filter.getCreateDateFrom() + "'");
         }
         if (filter.getCreateDateTo() != null) {
-            strings.add("create_date > '" + filter.getCreateDateTo() + "'");
+            strings.add("create_date <= '" + filter.getCreateDateTo() + "'");
         }
         if (filter.getContacts() != null && !filter.getContacts().isEmpty()) {
             strings.add("contacts ILIKE '%" + filter.getContacts() + "%' ");

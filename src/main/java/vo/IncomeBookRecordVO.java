@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class IncomeBookRecordVO {
@@ -17,6 +19,8 @@ public class IncomeBookRecordVO {
     private String anotherProfitType;
     private Double anotherProfitIncome;
 
+    public IncomeBookRecordVO() {}
+
     public IncomeBookRecordVO(Long recordId, Long userId, Timestamp dateTime, Double income, Double refund, Double revised, Double freeReceived, Double totalIncome, String notes, Long clientId, String anotherProfitType, Double anotherProfitIncome) {
         this.recordId = recordId;
         this.userId = userId;
@@ -30,6 +34,21 @@ public class IncomeBookRecordVO {
         this.clientId = clientId;
         this.anotherProfitType = anotherProfitType;
         this.anotherProfitIncome = anotherProfitIncome;
+    }
+
+    public IncomeBookRecordVO(ResultSet rs) throws SQLException {
+        this.recordId = rs.getLong("record_id");
+        this.userId = rs.getLong("user_id");
+        this.dateTime = rs.getTimestamp("date_time");
+        this.income = rs.getDouble("income");
+        this.refund = rs.getDouble("refund");
+        this.revised = rs.getDouble("revised");;
+        this.freeReceived = rs.getDouble("free_received");;
+        this.totalIncome = rs.getDouble("total_income");;
+        this.notes = rs.getString("notes");;
+        this.clientId = rs.getLong("client_id");
+        this.anotherProfitType = rs.getString("another_profit_type");
+        this.anotherProfitIncome = rs.getDouble("another_profit_income");
     }
 
     public Long getRecordId() {

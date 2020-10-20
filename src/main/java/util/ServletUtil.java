@@ -29,6 +29,9 @@ public class ServletUtil {
     public Long getSessionUserId() {
         return (Long) request.getAttribute(ServletConstants.ATTRIBUTE_NAME_USER_ID);
     }
+    public String getParameter(String parameterName) {
+        return request.getParameter(parameterName);
+    }
 
     public <OUT>void sendDTO(int statusCode, OUT dto) {
         response.setCharacterEncoding("UTF-8");

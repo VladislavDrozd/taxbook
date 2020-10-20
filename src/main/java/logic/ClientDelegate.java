@@ -13,12 +13,12 @@ import java.util.List;
 public class ClientDelegate {
     private static final Logger log = Logger.getLogger(ClientDelegate.class);
 
-    public Long addClient(ClientVO clientVO) throws Exception {
+    public Long addClient(Long userId, ClientVO clientVO) throws Exception {
         Connection connection = null;
         try {
             connection = DBPool.getConnection();
             ClientDAO clientDAO = new ClientDAO(connection);
-            return clientDAO.addClient(clientVO);
+            return clientDAO.addClient(userId, clientVO);
         } catch (Exception e) {
             log.error("DELEGATE Cannot add new client. addClient()", e);
             throw e;
@@ -27,12 +27,12 @@ public class ClientDelegate {
         }
     }
 
-    public int updateClient(ClientVO clientVO) throws Exception {
+    public int updateClient(Long userId, ClientVO clientVO) throws Exception {
         Connection connection = null;
         try {
             connection = DBPool.getConnection();
             ClientDAO clientDAO = new ClientDAO(connection);
-            return clientDAO.updateClient(clientVO);
+            return clientDAO.updateClient(userId, clientVO);
         } catch (Exception e) {
             log.error("DELEGATE Cannot update client. updateClient()", e);
             throw e;
@@ -49,6 +49,20 @@ public class ClientDelegate {
             return clientDAO.getClientById(clientId);
         } catch (Exception e) {
             log.error("DELEGATE Cannot get client by ID. getClientById()", e);
+            throw e;
+        } finally {
+            DBPool.closeConnection(connection);
+        }
+    }
+
+    public List<ClientVO> getAllClients(Long userId) throws Exception {
+        Connection connection = null;
+        try {
+            connection = DBPool.getConnection();
+            ClientDAO clientDAO = new ClientDAO(connection);
+            return clientDAO.getAllClients(userId);
+        } catch (Exception e) {
+            log.error("DELEGATE Cannot get all clients. getAllClients()", e);
             throw e;
         } finally {
             DBPool.closeConnection(connection);
