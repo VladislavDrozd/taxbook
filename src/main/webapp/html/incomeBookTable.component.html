@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TABLE</title>
+    <script src="../libs/angular-1.8.0/angular.js"></script>
+    <script src="../libs/angular-1.8.0/angular-resource.js"></script>
+    <script src="../js/incomeBookTable.module.js"></script>
+    <script src="../js/incomeBookTable.component.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/appstyles.css">
+</head>
+<body ng-app="myApp1212">
+    <div ng-controller="testController as vm" ng-cloak>
+            {{vm.data}}
+            {{vm.data}}
+            <div ng-repeat="res in vm.list">
+                <div>{{res.recordId}}</div>
+                {{$index}}
+            </div>
+            <button ng-click="vm.clickMeAdd()">C L I C K</button>
+            <button ng-click="vm.clickMeRemove()">C L I C K</button>
+    </div>
+</body>
+</html>
