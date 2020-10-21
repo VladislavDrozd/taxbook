@@ -41,6 +41,20 @@ public class ClientDelegate {
         }
     }
 
+    public int deleteClient(Long userId, Long clientId) throws Exception {
+        Connection connection = null;
+        try {
+            connection = DBPool.getConnection();
+            ClientDAO clientDAO = new ClientDAO(connection);
+            return clientDAO.deleteClient(userId, clientId);
+        } catch (Exception e) {
+            log.error("DELEGATE Cannot delete client. deleteClient()", e);
+            throw e;
+        } finally {
+            DBPool.closeConnection(connection);
+        }
+    }
+
     public ClientVO getClientById(Long clientId) throws Exception {
         Connection connection = null;
         try {

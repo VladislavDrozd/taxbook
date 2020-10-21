@@ -7,9 +7,6 @@ import vo.UserVO;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
-import java.io.IOException;
-import java.util.Date;
 
 public class UserServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(UserServlet.class);
@@ -19,6 +16,7 @@ public class UserServlet extends HttpServlet {
         String action = req.getParameter(ServletConstants.ACTION);
         switch (action) {
             case ServletConstants.UPDATE_USER : actionUpdateUser(su); break;
+            case ServletConstants.DELETE_USER : actionDeleteUser(su); break;
             case ServletConstants.GET_USER_BY_ID : actionGetUserById(su); break;
 
             default: su.sendDTO(ServletConstants.STATUS_BAD_REQUEST, "Unknown action: " + action);
@@ -40,12 +38,26 @@ public class UserServlet extends HttpServlet {
     private void actionUpdateUser(ServletUtil su) {
         try {
             Long userId = su.getSessionUserId();
-            UserVO userVO = su.deserializeDTO(UserVO.class);;
+            UserVO userVO = su.deserializeDTO(UserVO.class);
             UserDelegate userDelegate = new UserDelegate();
             int upd = userDelegate.updateUser(userId, userVO);
             su.sendDTO(ServletConstants.STATUS_OK, upd);
         } catch (Exception e) {
             log.error("SERVLET Cannot add update user. actionAddNewUser()", e);
+            su.sendError(e.getMessage());
+        }
+    }
+
+    private void actionDeleteUser(ServletUtil su) {
+        try {
+            Long userId = su.getSessionUserId();
+            UserDelegate userDelegate = new UserDelegate();
+            int del = userDelegate.deleteUser(userId);
+            su.sendDTO(ServletConstants.STATUS_OK, del);
+            su.getRequest().getSession(false).invalidate();
+            su.getResponse().sendRedirect(ServletConstants.APP_LINK);
+        } catch (Exception e) {
+            log.error("SERVLET Cannot delete user. actionDeleteUser()", e);
             su.sendError(e.getMessage());
         }
     }

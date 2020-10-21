@@ -1,5 +1,7 @@
 package logic;
 
+import dao.ClientDAO;
+import dao.IncomeBookRecordDAO;
 import dao.UserDAO;
 import de.mkammerer.argon2.Argon2Helper;
 import def.DBPool;
@@ -123,6 +125,28 @@ public class UserDelegate {
             return userDAO.updateUser(userId, userVO);
         } catch (Exception e) {
             log.error("DELEGATE Cannot update acl_user. updateUser()", e);
+            throw e;
+        } finally {
+            DBPool.closeConnection(connection);
+        }
+    }
+
+    public int deleteUser(Long userId) throws Exception {
+        Connection connection = null;
+        try {
+            connection = DBPool.getConnection();
+            IncomeBookRecordDAO recordDAO = new IncomeBookRecordDAO(connection);
+            ClientDAO clientDAO = new ClientDAO(connection);
+            UserDAO userDAO = new UserDAO(connection);
+            DBPool.startTransaction(connection);
+                recordDAO.deleteRecordsByUserId(userId);
+                clientDAO.deleteClientsByUserId(userId);
+                int del = userDAO.deleteUser(userId);
+            DBPool.commitTransaction(connection);
+            return del;
+        } catch (Exception e) {
+            DBPool.rollbackTransaction(connection);
+            log.error("DELEGATE Cannot delete acl_user by id. deleteUser()", e);
             throw e;
         } finally {
             DBPool.closeConnection(connection);

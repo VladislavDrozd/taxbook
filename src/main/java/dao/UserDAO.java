@@ -75,6 +75,17 @@ public class UserDAO {
         }
     }
 
+    public int deleteUser(Long userId) throws SQLException {
+        String sql = "DELETE FROM acl_user WHERE user_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            log.error("DAO Cannot delete user from DB. deleteUser()", e);
+            throw e;
+        }
+    }
+
     public boolean checkIfUserEmailIsAlreadyExists(String email) throws SQLException {
         String sql = "SELECT * FROM acl_user WHERE email = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {

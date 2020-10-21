@@ -20,6 +20,7 @@ public class ClientServlet extends HttpServlet {
         switch (action) {
             case ServletConstants.ADD_CLIENT : actionAddClient(su); break;
             case ServletConstants.UPDATE_CLIENT : actionUpdateClient(su); break;
+            case ServletConstants.DELETE_CLIENT : actionDeleteClient(su); break;
             case ServletConstants.GET_ALL_CLIENTS : actionGetAllClients(su); break;
             case ServletConstants.GET_CLIENTS_BY_FILTER : actionGetClientListByFilter(su); break;
             case ServletConstants.GET_CLIENT_BY_ID : actionGetClientById(su); break;
@@ -49,6 +50,19 @@ public class ClientServlet extends HttpServlet {
             su.sendDTO(ServletConstants.STATUS_OK, upd);
         } catch (Exception e) {
             log.error("SERVLET Cannot update client. actionUpdateClient()", e);
+            su.sendError(e.getMessage());
+        }
+    }
+
+    private void actionDeleteClient(ServletUtil su) {
+        try {
+            Long userId = su.getSessionUserId();
+            Long clientId = Long.parseLong(su.getParameter("clientId"));
+            ClientDelegate clientDelegate = new ClientDelegate();
+            int del = clientDelegate.deleteClient(userId, clientId);
+            su.sendDTO(ServletConstants.STATUS_OK, del);
+        } catch (Exception e) {
+            log.error("SERVLET Cannot delete client. actionDeleteClient()", e);
             su.sendError(e.getMessage());
         }
     }

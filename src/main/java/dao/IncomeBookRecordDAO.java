@@ -77,7 +77,18 @@ public class IncomeBookRecordDAO {
             ps.setLong(2, recordId);
             return ps.executeUpdate();
         } catch (SQLException e) {
-            log.error("DAO Cannot update record in income book in DB. addListOfIncomeBoorRecords()", e);
+            log.error("DAO Cannot delete record in income book in DB. deleteRecord()", e);
+            throw e;
+        }
+    }
+
+    public int deleteRecordsByUserId(Long userId) throws SQLException {
+        String sql = "DELETE FROM income_book WHERE user_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            log.error("DAO Cannot delete records by userId in income book in DB. deleteRecordsByUserId()", e);
             throw e;
         }
     }

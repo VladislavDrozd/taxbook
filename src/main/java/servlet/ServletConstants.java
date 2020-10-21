@@ -25,10 +25,12 @@ public class ServletConstants {
     /** UserServlet */
     public static final String GET_USER_BY_ID = "getUserById";
     public static final String UPDATE_USER = "updateUser";
+    public static final String DELETE_USER = "deleteUser";
 
     /** ClientServlet */
     public static final String ADD_CLIENT = "addClient";
     public static final String UPDATE_CLIENT = "updateClient";
+    public static final String DELETE_CLIENT = "deleteClient";
     public static final String GET_CLIENT_BY_ID = "getClientById";
     public static final String GET_ALL_CLIENTS = "getAllClients";
     public static final String GET_CLIENTS_BY_FILTER = "getClientsByFilter";

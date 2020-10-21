@@ -54,6 +54,29 @@ public class ClientDAO {
         }
     }
 
+    public int deleteClient(Long userId, Long clientId) throws SQLException {
+        String sql = "DELETE FROM client WHERE user_id = ? AND client_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+            ps.setLong(2, clientId);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            log.error("DAO Cannot delete client from DB. deleteClient()", e);
+            throw e;
+        }
+    }
+
+    public int deleteClientsByUserId(Long userId) throws SQLException {
+        String sql = "DELETE FROM client WHERE user_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            log.error("DAO Cannot delete clients by userId from DB. deleteClient()", e);
+            throw e;
+        }
+    }
+
     public ClientVO getClientById(Long clientId) throws SQLException {
         String sql = "SELECT * FROM client WHERE client_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
