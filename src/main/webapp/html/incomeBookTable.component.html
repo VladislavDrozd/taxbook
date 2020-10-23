@@ -4,21 +4,89 @@
     <meta charset="UTF-8">
     <title>TABLE</title>
     <script src="../libs/angular-1.8.0/angular.js"></script>
+    <script src="../libs/angular-1.8.0/angular-cookies.js"></script>
     <script src="../libs/angular-1.8.0/angular-resource.js"></script>
     <script src="../js/incomeBookTable.module.js"></script>
     <script src="../js/incomeBookTable.component.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/appstyles.css">
+    <link rel="stylesheet" type="text/css" href="../css/incomeBookTable.styles.css">
+    <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap-grid.css">
 </head>
-<body ng-app="myApp1212">
-    <div ng-controller="testController as vm" ng-cloak>
-            {{vm.data}}
-            {{vm.data}}
-            <div ng-repeat="res in vm.list">
-                <div>{{res.recordId}}</div>
-                {{$index}}
+<body ng-app="incomeBookTableModule">
+    <div ng-controller="incomeBookTableController as vm" ng-cloak>
+            {{vm.language}}
+        <div class="row">
+            <div class="col-1">Time</div>
+            <div class="col-1">Income</div>
+            <div class="col-1">Refund</div>
+            <div class="col-1">Revised</div>
+            <div class="col-1">Free</div>
+            <div class="col-1">Total</div>
+            <div class="col-2">Notes</div>
+            <div class="col-1">ClientId</div>
+            <div class="col-2">APType</div>
+            <div class="col-1">APIncome</div>
+        </div>
+        <!--<div class="row">
+            <div class="col-2">Month</div>
+            <div class="col-2">Income</div>
+            <div class="col-1">Refund</div>
+            <div class="col-1">Revised</div>
+            <div class="col-1">Free</div>
+            <div class="col-2">Total</div>
+            <div class="col-1">Another</div>
+            <div class="col-2">TotalTotal</div>
+        </div>-->
+            <div ng-repeat="month in vm.recordMonthList">
+                <div class="row">
+                    <div class="col-1">{{month.month}}</div>
+                    <div class="col-1">{{month.monthIncome}}</div>
+                    <div class="col-1">{{month.monthRefund}}</div>
+                    <div class="col-1">{{month.monthRevised}}</div>
+                    <div class="col-1">{{month.monthFreeReceived}}</div>
+                    <div class="col-1">{{month.monthTotalIncome}}</div>
+                    <div class="col-1">{{month.monthAnotherProfitIncome}}</div>
+                    <div class="col-1">{{month.monthTotalIncomePlusAnotherProfitType}}</div>
+                </div>
+                <!--<div class="row">
+                    <div class="col-2">Day</div>
+                    <div class="col-2">Income</div>
+                    <div class="col-1">Refund</div>
+                    <div class="col-1">Revised</div>
+                    <div class="col-1">Free</div>
+                    <div class="col-2">Total</div>
+                    <div class="col-1">Another</div>
+                    <div class="col-2">TotalTotal</div>
+                </div>-->
+                <div ng-repeat="day in month.recordDayArray">
+                    <div class="row">
+                        <div class="col-1">{{day.day | date: 'dd' + ' '  + month.month}}</div>
+                        <div class="col-1">{{day.dayIncome}}</div>
+                        <div class="col-1">{{day.dayRefund}}</div>
+                        <div class="col-1">{{day.dayRevised}}</div>
+                        <div class="col-1">{{day.dayFreeReceived}}</div>
+                        <div class="col-1">{{day.dayTotalIncome}}</div>
+                        <div class="col-1">{{day.dayAnotherProfitIncome}}</div>
+                        <div class="col-1">{{day.dayTotalIncomePlusAnotherProfitIncome}}</div>
+                    </div>
+                    <div ng-repeat="record in day.recordArray">
+                        <div class="row">
+                            <div class="col-1 cell">{{record.dateTime | date: 'dd.MM HH:mm'}}</div>
+                            <div class="col-1 cell">{{record.income}}</div>
+                            <div class="col-1 cell">{{record.refund}}</div>
+                            <div class="col-1 cell">{{record.revised}}</div>
+                            <div class="col-1 cell">{{record.freeReceived}}</div>
+                            <div class="col-1 cell">{{record.total}}</div>
+                            <div class="col-1 cell">{{record.notes}}</div>
+                            <div class="col-1 cell">{{record.clientId}}</div>
+                            <div class="col-1 cell">{{record.anotherProfitType}}</div>
+                            <div class="col-1 cell">{{record.anotherProfitIncome}}</div>
+                            <button ng-click="vm.printRecord(record)">P R I N T</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button ng-click="vm.clickMeAdd()">C L I C K</button>
-            <button ng-click="vm.clickMeRemove()">C L I C K</button>
     </div>
 </body>
 </html>

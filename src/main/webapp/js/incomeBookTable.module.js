@@ -1,5 +1,5 @@
 (function () {
     'use strict';
     angular
-        .module('myApp1212', []);
+        .module('incomeBookTableModule', ['ngCookies']);
 })();
