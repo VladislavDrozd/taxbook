@@ -1,0 +1,247 @@
+.modal-header{
+    padding-left: 33px;
+    padding-top: 30px;
+    padding-right: 25px;
+}
+
+
+.modal-open{
+    overflow: hidden;
+    margin-right: 0px!important;
+}
+
+
+.modal-footer{
+    justify-content: center;
+    border-top: none;
+}
+
+#regModal .modal-content{
+    height: 780px;
+}
+
+#logModal .modal-content{
+    height: 425px;
+}
+
+#logModal .modal-body .form-group{
+    margin-bottom: 40px;
+    margin-top: 15px;
+}
+
+#logModal .modal-body{
+    padding-bottom: 0px;
+}
+
+.modal-dialog{
+    color:#333333!important;
+    font-family: 'Museo Sans Cyrl 700', sans-serif!important;
+}
+
+.modal-footer{
+    margin-top: 0px;
+}
+
+.modal-body{
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.modal-body .form{
+    text-align: center!important;
+    font-size: 23px;
+}
+
+.modal-open{
+    margin-right: 0px!important;
+}
+
+
+
+.form-control{
+    border-radius: 20px!important;
+    height: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #73899a;
+}
+
+.form-control:focus{
+    background-color: rgba(237,240,249,0.5);
+
+}
+
+
+
+.btn-reg{
+    width: 150px;
+    height: 35px;
+    margin-left: 200px;
+}
+
+.btn-log-in{
+    width: 148px;
+    height: 35px;
+}
+
+.btn-submit{
+    width:351px;
+    height:63px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+.btn-toggler-out{
+    display: none;
+    margin-top: 30px;
+}
+
+article .annoying-reg{
+    padding-top:35px;
+    padding-bottom:35px;
+    background-color: #254b5e;
+}
+
+
+article .annoying-reg .btn{
+    color:white;
+    border: 2px solid white;
+    border-radius:13px;
+    width:240px;
+    height:45px ;
+    font-family: 'Museo Sans Cyrl 500', sans-serif!important;
+}
+
+#feedbackModal .modal-header h4{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+article .annoying-reg .btn:hover{
+    color:#254b5e;
+    background-color:white;
+}
+
+
+@media (max-width:991px){
+    .btn-reg{
+        margin-left: 5px!important;
+    }
+}
+
+@media (max-width:590px){
+
+    #feedbackModal small{
+        display: none;
+    }
+
+    article .annoying-reg .btn{
+        height:55px;
+        width: 75%;
+        margin-left: auto!important;
+        margin-right: auto!important;
+        font-size: 16px;
+
+    }
+
+    article .annoying-reg{
+        flex-direction: column;
+    }
+
+    article .annoying-reg .btn-annoying-reg{
+        margin-bottom: 30px;
+    }
+
+    .modal-dialog .form-control{
+        height: 55px;
+    }
+
+    .modal-header .modal-title{
+        font-size: 25px!important;
+    }
+
+    .modal-body .form{
+        font-size: 20px!important;
+    }
+
+    .btn-reg{
+        width: 200px;
+        height: 55px;
+    }
+    .btn-log-in{
+        width: 200px;
+        height: 55px;
+    }
+
+    .navbar-brand{
+        padding-left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 40px!important;
+    }
+
+}
+
+@media (max-width:540px){
+
+
+    .form-inline{
+        display: flex;
+        flex-direction: column;
+        margin-right: auto!important;
+        margin-left: auto!important;
+    }
+
+    .btn-reg{
+        width: 250px;
+        margin: 15px 0px 0px 0px!important;
+
+    }
+    .btn-log-in{
+        margin: 30px 0 0 0;
+        width: 250px;
+
+    }
+}
+
+@media (max-width:360px){
+    .modal-dialog .btn{
+        height: 50px;
+        width: 150px;
+    }
+}
+
+@media (max-width:340px){
+    .modal-body input{
+        font-size: 18px!important;
+        text-align: center;
+    }
+
+    .modal-body .form{
+        font-size: 18px!important;
+    }
+
+
+    .modal-body{
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+}
+
+@media (min-width: 576px){
+
+    .modal-dialog {
+        max-width: 700px!important;
+        margin: 1.75rem auto;
+        margin: 1.75rem auto;
+        padding-right: 5px!important;
+        padding-left: 5px!important;
+    }
+
+
+
+}
