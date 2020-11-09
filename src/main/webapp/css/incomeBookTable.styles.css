@@ -2,3 +2,19 @@
     border-style: solid;
     border-color: darkblue;
 }
+
+article .r {
+    padding-bottom: 0;
+}
+
+article .month {
+    background-color: darkcyan;
+}
+
+article .day {
+    background-color: lightskyblue;
+}
+
+article .rd {
+    background-color: lightblue;
+}
