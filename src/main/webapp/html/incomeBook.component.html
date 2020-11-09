@@ -17,12 +17,15 @@
     <link rel="stylesheet" href="../css/main-style.css">
     <link rel="stylesheet" href="../css/afterLog.css">
 
-
     <script src="../libs/angular-1.8.0/angular.js"></script>
     <script src="../libs/angular-1.8.0/angular-cookies.js"></script>
     <script src="../libs/angular-1.8.0/angular-resource.js"></script>
     <script src="../js/incomeBookTable.module.js"></script>
     <script src="../js/incomeBookTable.component.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/appstyles.css">
+    <link rel="stylesheet" type="text/css" href="../css/incomeBookTable.styles.css">
+    <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap-grid.css">
 
 
     <!--   <link rel="stylesheet" href="style.css">-->
@@ -31,7 +34,7 @@
 
 
 </head>
-<body>
+<body ng-app="incomeBookTableModule" ng-controller="incomeBookTableController as vm" ng-cloak>
     <div class="container-fluid sticky-top header" id="navbar">
         <nav class="navbar  navbar-expand-lg navbar-light bg-light ">
             <a class="navbar-brand" href="#">
@@ -87,7 +90,7 @@
 
     <div class="container-fluid p-0 page-header">
         <div class="container-bg text-center pr-4 pl-4 mb-4">
-            <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook</span>
+            <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook1</span>
                 <p class="mt-3 mb-0"><small>Швидкий та зручний сервіс для разрахунку оподаткування та введення книги доходів ФОП України.
                 </small></p>
                 <p class="about"><small>Електронна книга доходів. Календар сплат. База контактів контрагентів.</small></p></h1>
@@ -95,76 +98,50 @@
 
     </div>
 
-    <article class="about">
-        <income-book-table-controller></income-book-table-controller>
-
-
-
-
-
-
-
-
-
-
-
-<!--        <div class="container-fluid form-1">-->
-<!--            <div class="row">-->
-
-<!--                <div class="col-xl-5 info text-left pl-4">-->
-<!--                    <h4 class="mb-3" style = "font-family: 'Museo Sans Cyrl 700', sans-serif">I Група</h4>-->
-<!--                    <list class="list">-->
-<!--                        <li>Обмеження: торгівля виключно на ринках.</li>-->
-<!--                        <li>ФОП, які не використовують працю найманих робітників.</li>-->
-<!--                        <li>ФОП, виручка котрих є не більшою за 300 тис. грн./один календарний рік.</li>-->
-<!--                        <li>Роздрібний продаж товарів тільки на ринках.</li>-->
-<!--                        <li>Надання побутових послуг населенню.</li>-->
-<!--                    </list>-->
-<!--                </div>-->
-<!--                <div class="col-xl-7 img d-flex justify-content-end">-->
-<!--                    <img src="../img/Form1.jpg" alt="I Група">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="container-fluid form-2">-->
-<!--            <div class="row">-->
-<!--                <div class="col-xl-5 info text-left pl-4 order-xl-2">-->
-<!--                    <h4 class="mb-3" style = "font-family: 'Museo Sans Cyrl 700', sans-serif">II Група</h4>-->
-<!--                    <list class="list">-->
-<!--                        <li>ФОП, виручка котрих є не більшою за 1,5 млн.</li>-->
-<!--                        <li>ФОП, які використовують працю не більше ніж 10 найманих працівників.</li>-->
-<!--                        <li>Виробництво і / або продаж товарів (кому завгодно).</li>-->
-<!--                        <li>Не мають права надавати послуги юридичним особам не платникам єдиного податку.</li>-->
-<!--                    </list>-->
-<!--                </div>-->
-<!--                <div class="col-xl-7 img d-flex justify-content-start order-xl-1">-->
-<!--                    <img src="../img/Form2.jpg" alt="II Група">-->
-<!--                </div>-->
-
-
-
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="container-fluid form-3 mb-3">-->
-<!--            <div class="row">-->
-
-<!--                <div class="col-xl-5 info text-left pl-4">-->
-<!--                    <h4 class="mb-3" style = "font-family: 'Museo Sans Cyrl 700', sans-serif">III Група</h4>-->
-<!--                    <list class="list">-->
-
-<!--                        <li> ФОП, виручка котрих є не більшою за 5 млн. грн./один календарний рік.</li>-->
-<!--                        <li>ФОП, які використовують працю найманих робітників без кількісних обмежень.</li>-->
-<!--                        <li>Будь-які види діяльності, крім тих, які заборонені для ФОП, які сплачують єдиний податок.</li>-->
-
-<!--                    </list>-->
-<!--                </div>-->
-<!--                <div class="col-xl-7 img d-flex justify-content-end">-->
-<!--                    <img src="../img/Form3.jpg" alt="III Група">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-    </article>
+    <article>
+        <div ng-repeat="month in vm.recordMonthList">
+            <div class="row">
+                <div class="col-1">{{month.month}}</div>
+                <div class="col-1">{{month.monthIncome}}</div>
+                <div class="col-1">{{month.monthRefund}}</div>
+                <div class="col-1">{{month.monthRevised}}</div>
+                <div class="col-1">{{month.monthFreeReceived}}</div>
+                <div class="col-1">{{month.monthTotalIncome}}</div>
+                <div class="col-1">{{month.monthAnotherProfitIncome}}</div>
+                <div class="col-1">{{month.monthTotalIncomePlusAnotherProfitType}}</div>
+            </div>
+            <div ng-repeat="day in month.recordDayArray">
+                <div class="row">
+                    <div class="col-1">{{day.day | date: 'dd' + ' '  + month.month}}</div>
+                    <div class="col-1">{{day.dayIncome}}</div>
+                    <div class="col-1">{{day.dayRefund}}</div>
+                    <div class="col-1">{{day.dayRevised}}</div>
+                    <div class="col-1">{{day.dayFreeReceived}}</div>
+                    <div class="col-1">{{day.dayTotalIncome}}</div>
+                    <div class="col-1">{{day.dayAnotherProfitIncome}}</div>
+                    <div class="col-1">{{day.dayTotalIncomePlusAnotherProfitIncome}}</div>
+                </div>
+                <div ng-repeat="record in day.recordArray">
+                    <div class="row">
+                        <div class="col-1 cell">{{record.dateTime | date: 'dd.MM HH:mm'}}</div>
+                        <div class="col-1 cell">{{record.income}}</div>
+                        <div class="col-1 cell">{{record.refund}}</div>
+                        <div class="col-1 cell">{{record.revised}}</div>
+                        <div class="col-1 cell">{{record.freeReceived}}</div>
+                        <div class="col-1 cell">{{record.total}}</div>
+                        <div class="col-2 cell">{{record.notes}}</div>
+                        <div class="col-1 cell">{{record.clientId}}</div>
+                        <div class="col-1 cell">{{record.anotherProfitType}}</div>
+                        <div class="col-1 cell">{{record.anotherProfitIncome}}</div>
+                        <div class="col-1">
+                            <button ng-click="vm.printRecord(record)">P R I N T</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </article>
+    </atricle>
 
 
     <footer class="page-footer font-small">

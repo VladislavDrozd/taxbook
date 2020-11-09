@@ -9,7 +9,8 @@
 
     function Controller($http, $cookies) {
         const vm = this;
-        const APP_LINK = 'http://localhost:8080/taxbook/';
+        //const APP_LINK = 'http://localhost:8080/taxbook/';
+        const APP_LINK = 'http://192.168.0.102:8080/taxbook/';
 
         vm.language; // [en, ua]
         vm.user = {};
@@ -74,8 +75,18 @@
         function responseListToRecordDayList(list) {
             let recordDayArr = [];
             let prevRecord = list.shift();
+            console.log('shiftzero', prevRecord);
             recordDayArr.push(new RecordDay());
             last(recordDayArr).recordArray.push(prevRecord);
+                const currentRecordDay = last(recordDayArr);
+                currentRecordDay.day = prevRecord.dateTime;
+                currentRecordDay.dayIncome = prevRecord.income;
+                currentRecordDay.dayRefund = prevRecord.refund;
+                currentRecordDay.dayRevised = prevRecord.revised;
+                currentRecordDay.dayFreeReceived = prevRecord.freeReceived;
+                currentRecordDay.dayTotalIncome = prevRecord.totalIncome;
+                currentRecordDay.dayAnotherProfitIncome = prevRecord.anotherProfitIncome;
+                currentRecordDay.dayTotalIncomePlusAnotherProfitIncome = (prevRecord.anotherProfitIncome + prevRecord.totalIncome);
             for (let record of list) {
                 let recordDate = record.dateTime.getDate();
                 let prevRecordDate = prevRecord.dateTime.getDate();
@@ -102,6 +113,15 @@
             let prevDayRecord = dayList.shift();
             recordMonthArr.push(new RecordMonth());
             last(recordMonthArr).recordDayArray.push(prevDayRecord);
+                const currentRecordMonth = last(recordMonthArr);
+                currentRecordMonth.month = getMonthName(prevDayRecord.day.getMonth());
+                currentRecordMonth.monthIncome = prevDayRecord.dayIncome;
+                currentRecordMonth.monthRefund = prevDayRecord.dayRefund;
+                currentRecordMonth.monthRevised = prevDayRecord.dayRevised;
+                currentRecordMonth.monthFreeReceived = prevDayRecord.dayFreeReceived;
+                currentRecordMonth.monthTotalIncome = prevDayRecord.dayTotalIncome;
+                currentRecordMonth.monthAnotherProfitIncome = prevDayRecord.dayAnotherProfitIncome;
+                currentRecordMonth.monthTotalIncomePlusAnotherProfitType = (prevDayRecord.dayAnotherProfitIncome + prevDayRecord.dayTotalIncome);
             for (let record of dayList) {
                 let recordMonth = record.day.getMonth();
                 let prevRecordMonth = prevDayRecord.day.getMonth();
