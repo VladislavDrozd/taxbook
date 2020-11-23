@@ -1,20 +1,119 @@
-.cell {
-    border-style: solid;
-    border-color: darkblue;
+* {
+    box-sizing: border-box;
 }
 
-article .r {
-    padding-bottom: 0;
+
+.table-header .row {
+    margin: 0;padding: 0; border-collapse: collapse;
+}  .table-header .col-1 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-2 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-3 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-4 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-5 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-6 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-7 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-8 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-9 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-10 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-11 {
+    margin: 0; padding: 0; border-collapse: collapse;
+}  .table-header .col-12 {
+    margin: 0; padding: 0; border-collapse: collapse;
 }
 
-article .month {
+article .row {
+    margin: 0; padding: 0; width: auto;
+}
+
+.table-header .header-cell {
+    font-size: 15px;
+    text-align: center;
+    border-collapse: collapse;
+}
+.abt {
+    border-top: #005cbf 2px solid;
+}
+.abr {
+    border-right: #005cbf 2px solid;
+}
+.abb {
+    border-bottom: #005cbf 2px solid;
+}
+.abl {
+    border-left: #005cbf 2px solid;
+}
+
+.row.month {
     background-color: darkcyan;
+     margin: 0; padding: 0;
+}
+.row.month .row {
+    margin: 0; padding: 0;
 }
 
-article .day {
-    background-color: lightskyblue;
+
+/*BUTTONS*/
+.button-expand-collapse {
+    margin: 0;
+    padding: 2px 0 2px 0;
+    background-color: white;
+    color: black;
+}
+.button-expand-collapse:hover {
+    background-color: black;
+    color: white;
 }
 
-article .rd {
-    background-color: lightblue;
+
+
+ /*MONTH RECORDS*/
+.month-background-color-even {
+    background-color: #bdfffd;
+}
+.month-background-color-odd {
+    background-color: #96f8ff;
+}
+
+.month .month-cell {
+    text-align: center;
+}
+
+/*DAYS RECORDS*/
+.day-background-color-even {
+    background-color: #ffb8f7;
+}
+.day-background-color-odd {
+    background-color: #ffd9fb;
+}
+
+.day .day-cell {
+    text-align: center;
+}
+
+/*RECORD RECORDS*/
+.record-background-color-even {
+    background-color: #f9ffa3;
+}
+.record-background-color-odd {
+    background-color: #fbffc9;
+}
+
+.record .record-cell {
+    display: flex;
+}
+.record .record-cell > .record-cell-child {
+    margin: auto;
+}
+.record .record-note-cell {
+    text-align: left;
 }

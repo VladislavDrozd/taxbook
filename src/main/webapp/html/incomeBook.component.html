@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="../css/incomeBookTable.styles.css">
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/">
 
 
     <!--   <link rel="stylesheet" href="style.css">-->
@@ -90,7 +91,7 @@
 
     <div class="container-fluid p-0 page-header">
         <div class="container-bg text-center pr-4 pl-4 mb-4">
-            <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook1</span>
+            <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook2</span>
                 <p class="mt-3 mb-0"><small>Швидкий та зручний сервіс для разрахунку оподаткування та введення книги доходів ФОП України.
                 </small></p>
                 <p class="about"><small>Електронна книга доходів. Календар сплат. База контактів контрагентів.</small></p></h1>
@@ -99,108 +100,173 @@
     </div>
 
     <article>
-        <div ng-repeat="month in vm.recordMonthList">
-            <!-- STANDARD REPRESENTATION
+        <!--BEGIN MAIN TABLE HEADER-->
+        <div class="table-header abt abr abb abl" style="margin-left: 15px; margin-right: 15px">
             <div class="row">
-                <div class="col-1">{{month.month}}</div>
-                <div class="col-1">{{month.monthIncome}}</div>
-                <div class="col-1">{{month.monthRefund}}</div>
-                <div class="col-1">{{month.monthRevised}}</div>
-                <div class="col-1">{{month.monthFreeReceived}}</div>
-                <div class="col-1">{{month.monthTotalIncome}}</div>
-                <div class="col-1">{{month.monthAnotherProfitIncome}}</div>
-                <div class="col-1">{{month.monthTotalIncomePlusAnotherProfitType}}</div>
-            </div>-->
-            <div class="row month" ng-init="let showMonthDays=false">
-                <div class="r row">
-                    <div class="col-12">Month: {{month.month}}</div>
-                </div>
-                <div class="r row">
-                    <div class="col-1"></div>
-                    <div class="col-1 cell">Income</div>
-                    <div class="col-1 cell">Refund</div>
-                    <div class="col-1 cell">Revised</div>
-                    <div class="col-1 cell">FreeReceived</div>
-                    <div class="col-1 cell">Total</div>
-                    <div class="col-2"></div>
-                    <div class="col-1"></div>
-                    <div class="col-1"></div>
-                    <div class="col-1 cell">APTI</div>
-                    <div class="col-1 cell">APTI + Total</div>
-                </div>
-                <div class="r row">
-                    <div class="col-1"></div>
-                    <div class="col-1 cell">{{month.monthIncome}}</div>
-                    <div class="col-1 cell">{{month.monthRefund}}</div>
-                    <div class="col-1 cell">{{month.monthRevised}}</div>
-                    <div class="col-1 cell">{{month.monthFreeReceived}}</div>
-                    <div class="col-1 cell">{{month.monthTotal}}</div>
-                    <div class="col-2"></div>
-                    <div class="col-1"></div>
-                    <div class="col-1"></div>
-                    <div class="col-1 cell">{{month.monthAnotherProfitIncome}}</div>
-                    <div class="col-1 cell">{{month.monthTotalIncomePlusAnotherProfitType}}</div>
-                </div>
-            </div>
-            <div ng-repeat="day in month.recordDayArray">
-                <!-- STANDARD REPRESENTATION
-                <div class="r row">
-                    <div class="col-1">{{day.day | date: 'dd' + ' '  + month.month}}</div>
-                    <div class="col-1">{{day.dayIncome}}</div>
-                    <div class="col-1">{{day.dayRefund}}</div>
-                    <div class="col-1">{{day.dayRevised}}</div>
-                    <div class="col-1">{{day.dayFreeReceived}}</div>
-                    <div class="col-1">{{day.dayTotalIncome}}</div>
-                    <div class="col-1">{{day.dayAnotherProfitIncome}}</div>
-                    <div class="col-1">{{day.dayTotalIncomePlusAnotherProfitIncome}}</div>
-                </div>-->
-                <div class="row day" ng-if="showMonthDays">
-                    <div class="r row">
-                        <div class="col-1 cell">DayTime</div>
-                        <div class="col-1 cell">Income</div>
-                        <div class="col-1 cell">Refund</div>
-                        <div class="col-1 cell">Revised</div>
-                        <div class="col-1 cell">FreeReceived</div>
-                        <div class="col-1 cell">Total</div>
-                        <div class="col-2"></div>
-                        <div class="col-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-1 cell">APTI</div>
-                        <div class="col-1"></div>
-                    </div>
-                    <div class="r row">
-                        <div class="col-1 cell">{{day.day | date: 'dd' + ' '  + month.month}}</div>
-                        <div class="col-1 cell">{{day.dayIncome}}</div>
-                        <div class="col-1 cell">{{day.dayRefund}}</div>
-                        <div class="col-1 cell">{{day.dayRevised}}</div>
-                        <div class="col-1 cell">{{day.dayFreeReceived}}</div>
-                        <div class="col-1 cell">{{day.dayTotalIncome}}</div>
-                        <div class="col-2"></div>
-                        <div class="col-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-1 cell">{{day.dayAnotherProfitIncome}}</div>
-                        <div class="col-1"></div>
-                    </div>
-                </div>
-                <div ng-repeat="record in day.recordArray">
-                    <div class="r row">
-                        <div class="col-1 cell">{{record.dateTime | date: 'dd.MM HH:mm'}}</div>
-                        <div class="col-1 cell">{{record.income}}</div>
-                        <div class="col-1 cell">{{record.refund}}</div>
-                        <div class="col-1 cell">{{record.revised}}</div>
-                        <div class="col-1 cell">{{record.freeReceived}}</div>
-                        <div class="col-1 cell">{{record.total}}</div>
-                        <div class="col-2 cell">{{record.notes}}</div>
-                        <div class="col-1 cell">{{record.clientId}}</div>
-                        <div class="col-1 cell">{{record.anotherProfitType}}</div>
-                        <div class="col-1 cell">{{record.anotherProfitIncome}}</div>
-                        <div class="col-1">
-                            <button ng-click="vm.printRecord(record)">P R I N T</button>
+                <div class="col-12 header-cell">
+                    <div class="row">
+                        <div class="col-1 align-self-center">Дата запису</div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-12 abl abb">вартість проданих товарів, виконаних робіт, наданих послуг</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 header-cell abl">сума, грн, коп</div>
+                                <div class="col-4 header-cell abl">сума повернутих коштів</div>
+                                <div class="col-4 header-cell abl">скоригована сума (2-3)</div>
+                            </div>
                         </div>
+                        <div class="col-2 header-cell" style="display: flex; flex-direction: row; align-items: stretch;">
+                            <div class="header-cell abl" style="width: 50%; display: flex; justify-content: center; align-items: center"><div>вартість безоплатно отриманих послуг</div></div>
+                            <div class="header-cell abl" style="width: 50%; display: flex; justify-content: center; align-items: center"><div>всього 4 + 5</div></div>
+                        </div>
+                        <div class="col-3 header-cell" style="display: flex; flex-direction: row; align-items: stretch;">
+                            <div class="col-8 header-cell abl" style="display: flex; justify-content: center; align-items: center"><div>Нотатки</div></div>
+                            <div class="col-4 header-cell abl" style="display: flex; justify-content: center; align-items: center"><div>Клієнт</div></div>
+                        </div>
+                        <div class="col-2 header-cell abl abr" style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: stretch">
+                            <div class="row" style="display: flex; align-items: center">
+                                <div class="rb col-12 header-cell">Дохід за ставкою 15 відсотків</div>
+                            </div>
+                            <div class="row" style="width: 100%; display: flex; align-items: stretch">
+                                <div class="col-6 header-cell abt" style="display: flex; justify-content: center; align-items: center"><div>вид доходу</div></div>
+                                <div class="col-6 header-cell abl abt" style="display: flex; justify-content: center; align-items: center"><div>сума, грн</div></div>
+                            </div>
+                        </div>
+                        <div class="col-1 header-cell" style="display: flex; justify-content: center; align-items: center">
+                            <div>Дiя</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 header-cell abt">1</div>
+                        <div class="col-1 header-cell abt abl">2</div>
+                        <div class="col-1 header-cell abt abl">3</div>
+                        <div class="col-1 header-cell abt abl">4</div>
+                        <div class="col-1 header-cell abt abl">5</div>
+                        <div class="col-1 header-cell abt abl">6</div>
+                        <div class="col-2 header-cell abt abl"></div>
+                        <div class="col-1 header-cell abt abl"></div>
+                        <div class="col-1 header-cell abt abl">7</div>
+                        <div class="col-1 header-cell abt abl abr">8</div>
                     </div>
                 </div>
             </div>
         </div>
+        <!--END MAIN TABLE HEADER-->
+
+        <div class="table-records">
+            <div class="row">
+                <div class="col-12">
+
+                    <div ng-repeat="month in vm.recordMonthList">
+                        <!-- STANDARD REPRESENTATION
+                        <div class="row">
+                            <div class="col-1">{{month.month}}</div>
+                            <div class="col-1">{{month.monthIncome}}</div>
+                            <div class="col-1">{{month.monthRefund}}</div>
+                            <div class="col-1">{{month.monthRevised}}</div>
+                            <div class="col-1">{{month.monthFreeReceived}}</div>
+                            <div class="col-1">{{month.monthTotalIncome}}</div>
+                            <div class="col-1">{{month.monthAnotherProfitIncome}}</div>
+                            <div class="col-1">{{month.monthTotalIncomePlusAnotherProfitType}}</div>
+                        </div>-->
+                        <div ng-init="showDays=false">
+                            <div class="month" ng-class-even="'month-background-color-even'" ng-class-odd="'month-background-color-odd'">
+                                <div class="row">
+                                    <div class="col-2">Month: {{month.month}}</div>
+                                    <div class="col-1">
+                                        <button class="button-expand-collapse" ng-click="showDays = !showDays">
+                                            <span ng-if="!showDays">Розгорнути &#9660</span>
+                                            <span ng-if="showDays">Згорнути &#9650</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">All income = {{month.monthTotalIncomePlusAnotherProfitType}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 month-cell"></div>
+                                    <div class="col-1 month-cell">{{month.monthIncome}}</div>
+                                    <div class="col-1 month-cell">{{month.monthRefund}}</div>
+                                    <div class="col-1 month-cell">{{month.monthRevised}}</div>
+                                    <div class="col-1 month-cell">{{month.monthFreeReceived}}</div>
+                                    <div class="col-1 month-cell">{{month.monthTotalIncome}}</div>
+                                    <div class="col-2 month-cell"></div>
+                                    <div class="col-1 month-cell"></div>
+                                    <div class="col-1 month-cell"></div>
+                                    <div class="col-1 month-cell">{{month.monthAnotherProfitIncome}}</div>
+                                    <div class="col-1 month-cell">
+                                        <button class="button-expand-collapse" ng-click="showDays = !showDays">
+                                            <span ng-if="!showDays">Розгорнути &#9660</span>
+                                            <span ng-if="showDays">Згорнути &#9650</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- DAY BEGIN -->
+                            <div ng-repeat="day in month.recordDayArray">
+                                <!-- STANDARD REPRESENTATION
+                                <div class="r row">
+                                    <div class="col-1">{{day.day | date: 'dd' + ' '  + month.month}}</div>
+                                    <div class="col-1">{{day.dayIncome}}</div>
+                                    <div class="col-1">{{day.dayRefund}}</div>
+                                    <div class="col-1">{{day.dayRevised}}</div>
+                                    <div class="col-1">{{day.dayFreeReceived}}</div>
+                                    <div class="col-1">{{day.dayTotalIncome}}</div>
+                                    <div class="col-1">{{day.dayAnotherProfitIncome}}</div>
+                                    <div class="col-1">{{day.dayTotalIncomePlusAnotherProfitIncome}}</div>
+                                </div>-->
+                                <div ng-init="showRecords=false" ng-if="showDays">
+                                    <div class="day" ng-class-even="'day-background-color-even'" ng-class-odd="'day-background-color-odd'">
+                                        <div class="row">
+                                            <div class="col-1 day-cell">{{day.day | date: 'dd-MM'}}</div>
+                                            <div class="col-1 day-cell">{{day.dayIncome}}</div>
+                                            <div class="col-1 day-cell">{{day.dayRefund}}</div>
+                                            <div class="col-1 day-cell">{{day.dayRevised}}</div>
+                                            <div class="col-1 day-cell">{{day.dayFreeReceived}}</div>
+                                            <div class="col-1 day-cell">{{day.dayTotalIncome}}</div>
+                                            <div class="col-2 day-cell"></div>
+                                            <div class="col-1 day-cell"></div>
+                                            <div class="col-1 day-cell"></div>
+                                            <div class="col-1 day-cell">{{day.dayAnotherProfitIncome}}</div>
+                                            <div class="col-1 day-cell">
+                                                <button class="button-expand-collapse" ng-click="showRecords = !showRecords">
+                                                    <span ng-if="!showRecords">Розгорнути &#9660</span>
+                                                    <span ng-if="showRecords">Згорнути &#9650</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- RECORD BEGIN -->
+                                    <div class="record" ng-repeat="record in day.recordArray">
+                                        <div class="record" ng-class-even="'record-background-color-even'" ng-class-odd="'record-background-color-odd'">
+                                            <div class="row" ng-if="showRecords">
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.dateTime | date: 'HH:mm'}}</div></div>
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.income}}</div></div>
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.refund}}</div></div>
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.revised}}</div></div>
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.freeReceived}}</div></div>
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.total}}</div></div>
+                                                <div class="col-2 record-cell record-note-cell">{{record.notes}}</div>
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.clientId}}</div></div>
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.anotherProfitType}}</div></div>
+                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.anotherProfitIncome}}</div></div>
+                                                <div class="col-1 record-cell">
+                                                    <button ng-click="vm.printRecord(record)">P R I N T</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- RECORD END -->
+                                </div>
+                                <!-- DAY END -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </article>
 
 
