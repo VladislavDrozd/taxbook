@@ -35,22 +35,27 @@ article .row {
     margin: 0; padding: 0; width: auto;
 }
 
+.table-header {
+    background-color: #204969;
+    color: white;
+}
+
 .table-header .header-cell {
     font-size: 15px;
     text-align: center;
     border-collapse: collapse;
 }
 .abt {
-    border-top: #005cbf 2px solid;
+    border-top: white 2px solid;
 }
 .abr {
-    border-right: #005cbf 2px solid;
+    border-right: white 2px solid;
 }
 .abb {
-    border-bottom: #005cbf 2px solid;
+    border-bottom: white 2px solid;
 }
 .abl {
-    border-left: #005cbf 2px solid;
+    border-left: white 2px solid;
 }
 
 .row.month {
@@ -64,8 +69,9 @@ article .row {
 
 /*BUTTONS*/
 .button-expand-collapse {
-    margin: 0;
-    padding: 2px 0 2px 0;
+    margin: 2px 0 2px 0;
+    width: 100%;
+    border-radius: 10px;
     background-color: white;
     color: black;
 }
@@ -90,10 +96,10 @@ article .row {
 
 /*DAYS RECORDS*/
 .day-background-color-even {
-    background-color: #ffb8f7;
+    background-color: #ffdbdd;
 }
 .day-background-color-odd {
-    background-color: #ffd9fb;
+    background-color: #ffe6e7;
 }
 
 .day .day-cell {
@@ -102,7 +108,7 @@ article .row {
 
 /*RECORD RECORDS*/
 .record-background-color-even {
-    background-color: #f9ffa3;
+    background-color: #fdffe0;
 }
 .record-background-color-odd {
     background-color: #fbffc9;
@@ -111,6 +117,16 @@ article .row {
 .record .record-cell {
     display: flex;
 }
+
+.record .col-1.dropdown.record-cell {
+    padding: 1px 0 1px 0;
+}
+.record .col-1.dropdown.record-cell > .btn-action {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
 .record .record-cell > .record-cell-child {
     margin: auto;
 }

@@ -118,7 +118,7 @@
                         </div>
                         <div class="col-2 header-cell" style="display: flex; flex-direction: row; align-items: stretch;">
                             <div class="header-cell abl" style="width: 50%; display: flex; justify-content: center; align-items: center"><div>вартість безоплатно отриманих послуг</div></div>
-                            <div class="header-cell abl" style="width: 50%; display: flex; justify-content: center; align-items: center"><div>всього 4 + 5</div></div>
+                            <div class="header-cell abl" style="width: 50%; display: flex; justify-content: center; align-items: center"><div>всього (4 + 5)</div></div>
                         </div>
                         <div class="col-3 header-cell" style="display: flex; flex-direction: row; align-items: stretch;">
                             <div class="col-8 header-cell abl" style="display: flex; justify-content: center; align-items: center"><div>Нотатки</div></div>
@@ -173,14 +173,14 @@
                         <div ng-init="showDays=false">
                             <div class="month" ng-class-even="'month-background-color-even'" ng-class-odd="'month-background-color-odd'">
                                 <div class="row">
-                                    <div class="col-2">Month: {{month.month}}</div>
-                                    <div class="col-1">
+                                    <div class="col-2"><b>{{month.month}}</b></div>
+                                    <div class="col-1" style="padding: 0">
                                         <button class="button-expand-collapse" ng-click="showDays = !showDays">
-                                            <span ng-if="!showDays">Розгорнути &#9660</span>
-                                            <span ng-if="showDays">Згорнути &#9650</span>
+                                            <small ng-if="!showDays">Розгорнути &#9660</small>
+                                            <span ng-if="showDays"><small>Згорнути &#9650</small></span>
                                         </button>
                                     </div>
-                                    <div class="col-3">All income = {{month.monthTotalIncomePlusAnotherProfitType}}</div>
+                                    <div class="col-6"><b>Сумарний мiсячний дохiд (6 + 8) = {{month.monthTotalIncomePlusAnotherProfitType}} грн</b></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-1 month-cell"></div>
@@ -193,10 +193,10 @@
                                     <div class="col-1 month-cell"></div>
                                     <div class="col-1 month-cell"></div>
                                     <div class="col-1 month-cell">{{month.monthAnotherProfitIncome}}</div>
-                                    <div class="col-1 month-cell">
+                                    <div class="col-1 month-cell" style="padding: 0">
                                         <button class="button-expand-collapse" ng-click="showDays = !showDays">
-                                            <span ng-if="!showDays">Розгорнути &#9660</span>
-                                            <span ng-if="showDays">Згорнути &#9650</span>
+                                            <small ng-if="!showDays">Розгорнути &#9660</small>
+                                            <small ng-if="showDays">Згорнути &#9650</small>
                                         </button>
                                     </div>
                                 </div>
@@ -227,17 +227,17 @@
                                             <div class="col-1 day-cell"></div>
                                             <div class="col-1 day-cell"></div>
                                             <div class="col-1 day-cell">{{day.dayAnotherProfitIncome}}</div>
-                                            <div class="col-1 day-cell">
+                                            <div class="col-1 day-cell" style="padding: 0">
                                                 <button class="button-expand-collapse" ng-click="showRecords = !showRecords">
-                                                    <span ng-if="!showRecords">Розгорнути &#9660</span>
-                                                    <span ng-if="showRecords">Згорнути &#9650</span>
+                                                    <small ng-if="!showRecords">Розгорнути &#9660</small>
+                                                    <small ng-if="showRecords">Згорнути &#9650</small>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- RECORD BEGIN -->
-                                    <div class="record" ng-repeat="record in day.recordArray">
+                                    <div ng-repeat="record in day.recordArray">
                                         <div class="record" ng-class-even="'record-background-color-even'" ng-class-odd="'record-background-color-odd'">
                                             <div class="row" ng-if="showRecords">
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.dateTime | date: 'HH:mm'}}</div></div>
@@ -250,8 +250,14 @@
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.clientId}}</div></div>
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.anotherProfitType}}</div></div>
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.anotherProfitIncome}}</div></div>
-                                                <div class="col-1 record-cell">
-                                                    <button ng-click="vm.printRecord(record)">P R I N T</button>
+                                                <div class="col-1 dropdown record-cell">
+                                                    <button class="btn btn-primary dropdown-toggle btn-action" type="button" data-toggle="dropdown">
+                                                        Action<span class="caret"></span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <button class="dropdown-item" ng-click="vm.printRecord(record)">Редагувати &#9998</button>
+                                                        <button class="dropdown-item" ng-click="vm.printRecord(record)">Видалити &#10006</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

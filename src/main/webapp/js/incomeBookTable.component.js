@@ -9,8 +9,8 @@
 
     function Controller($http, $cookies) {
         const vm = this;
-        const APP_LINK = 'http://localhost:8080/taxbook/';
-        //const APP_LINK = 'http://192.168.0.100:8080/taxbook/';
+        //const APP_LINK = 'http://localhost:8080/taxbook/';
+        const APP_LINK = 'http://192.168.0.101:8080/taxbook/';
 
         vm.language; // [en, ua]
         vm.user = {};
