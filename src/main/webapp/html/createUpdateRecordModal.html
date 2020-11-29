@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <div class="row">
+        <div class="col-12 justify-content-center">
+            Редагувати запис
+        </div>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-6">
+            <div>Дата та час</div>
+            <input type="datetime-local" step="60" ng-model="vm.record.dateTime"/>
+        </div>
+        <div class="col-6 align-self-center">
+            <div>Дохід</div>
+            <input type="text" ng-model="vm.record.income"/><span> грн. коп.</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div>Сума повернутих коштів</div>
+            <input type="text" step="60" ng-model="vm.record.refund"/><span> грн. коп.</span>
+        </div>
+        <div class="col-6">
+            <div>Безоплатно отримані послуги</div>
+            <input type="text" ng-model="vm.record.freeReceived"/><span> грн. коп.</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div>Нотатки</div>
+            <textarea placeholder="Ваші нотатки..." ng-model="vm.record.notes"></textarea>
+        </div>
+        <div class="col-6 align-self-center">
+            <div>Клієнт</div>
+            <input type="text" ng-model="vm.record.clientId"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">Дохід, що оподатковується за ставкою 15%</div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div>Вид доходу</div>
+            <textarea placeholder="" ng-model="vm.record.anotherProfitType"></textarea>
+        </div>
+        <div class="col-6 align-self-center">
+            <div>Сума</div>
+            <input type="text" ng-model="vm.record.clientId"/><span> грн. коп.</span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-outline-warning" ng-click="vm.close()">Закрити</button>
+    <button class="btn btn-outline-primary" ng-click="vm.save()">Зберегти</button>
+</div>

@@ -133,3 +133,30 @@ article .row {
 .record .record-note-cell {
     text-align: left;
 }
+
+/*MODAL WINDOW CREATE/UPDATE RECORD*/
+.modal-backdrop.fade {
+    opacity: 0.5;
+}
+.modal.fade.ng-isolate-scope.in.fade:not(.show) {
+    opacity: 1;
+}
+.modal-dialog.modal-lg {
+    top: 20%;
+}
+
+.modal-header {
+    background-color: #0056b3;
+    color: white;
+    font-size: xx-large;
+    font-family: Andalus, serif;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-body > .row {
+    margin-bottom: 10px;
+}

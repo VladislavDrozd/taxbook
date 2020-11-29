@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class IncomeBookRecordDTO extends IncomeBookRecordVO {
+    public IncomeBookRecordDTO() {}
     public IncomeBookRecordDTO(Long recordId, Long userId, Timestamp dateTime, Double income, Double refund, Double revised, Double freeReceived, Double totalIncome, String notes, Long clientId, String anotherProfitType, Double anotherProfitIncome) {
         super(recordId, userId, dateTime, income, refund, revised, freeReceived, totalIncome, notes, clientId, anotherProfitType, anotherProfitIncome);
     }

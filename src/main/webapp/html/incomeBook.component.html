@@ -22,11 +22,19 @@
     <script src="../libs/angular-1.8.0/angular-resource.js"></script>
     <script src="../js/incomeBookTable.module.js"></script>
     <script src="../js/incomeBookTable.component.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/appstyles.css">
-    <link rel="stylesheet" type="text/css" href="../css/incomeBookTable.styles.css">
+    <script src="../js/createUpdateRecordModal.component.js"></script>
+
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/">
+
+    <!-- For uibModal directive -->
+    <script src="../libs/angular-1.8.0/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="../libs/angular-1.8.0/angular-touch.js"></script>
+    <script src="../libs/angular-1.8.0/angular-animate.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/appstyles.css">
+    <link rel="stylesheet" type="text/css" href="../css/incomeBookTable.styles.css">
 
 
     <!--   <link rel="stylesheet" href="style.css">-->
@@ -99,7 +107,10 @@
 
     </div>
 
-    <article>
+    <article id="article">
+        <div class="row">
+            <!--add record-->
+        </div>
         <!--BEGIN MAIN TABLE HEADER-->
         <div class="table-header abt abr abb abl" style="margin-left: 15px; margin-right: 15px">
             <div class="row">
@@ -159,17 +170,6 @@
                 <div class="col-12">
 
                     <div ng-repeat="month in vm.recordMonthList">
-                        <!-- STANDARD REPRESENTATION
-                        <div class="row">
-                            <div class="col-1">{{month.month}}</div>
-                            <div class="col-1">{{month.monthIncome}}</div>
-                            <div class="col-1">{{month.monthRefund}}</div>
-                            <div class="col-1">{{month.monthRevised}}</div>
-                            <div class="col-1">{{month.monthFreeReceived}}</div>
-                            <div class="col-1">{{month.monthTotalIncome}}</div>
-                            <div class="col-1">{{month.monthAnotherProfitIncome}}</div>
-                            <div class="col-1">{{month.monthTotalIncomePlusAnotherProfitType}}</div>
-                        </div>-->
                         <div ng-init="showDays=false">
                             <div class="month" ng-class-even="'month-background-color-even'" ng-class-odd="'month-background-color-odd'">
                                 <div class="row">
@@ -203,17 +203,7 @@
                             </div>
                             <!-- DAY BEGIN -->
                             <div ng-repeat="day in month.recordDayArray">
-                                <!-- STANDARD REPRESENTATION
-                                <div class="r row">
-                                    <div class="col-1">{{day.day | date: 'dd' + ' '  + month.month}}</div>
-                                    <div class="col-1">{{day.dayIncome}}</div>
-                                    <div class="col-1">{{day.dayRefund}}</div>
-                                    <div class="col-1">{{day.dayRevised}}</div>
-                                    <div class="col-1">{{day.dayFreeReceived}}</div>
-                                    <div class="col-1">{{day.dayTotalIncome}}</div>
-                                    <div class="col-1">{{day.dayAnotherProfitIncome}}</div>
-                                    <div class="col-1">{{day.dayTotalIncomePlusAnotherProfitIncome}}</div>
-                                </div>-->
+
                                 <div ng-init="showRecords=false" ng-if="showDays">
                                     <div class="day" ng-class-even="'day-background-color-even'" ng-class-odd="'day-background-color-odd'">
                                         <div class="row">
@@ -255,8 +245,8 @@
                                                         Action<span class="caret"></span>
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <button class="dropdown-item" ng-click="vm.printRecord(record)">Редагувати &#9998</button>
-                                                        <button class="dropdown-item" ng-click="vm.printRecord(record)">Видалити &#10006</button>
+                                                        <button class="dropdown-item" ng-click="vm.updateRecordModal(record)">Редагувати &#9998</button>
+                                                        <button class="dropdown-item" ng-click="vm.deleteRecord(record)">Видалити &#10006</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -274,6 +264,8 @@
         </div>
 
     </article>
+
+
 
 
     <footer class="page-footer font-small">
