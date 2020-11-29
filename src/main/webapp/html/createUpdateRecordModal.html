@@ -1,8 +1,7 @@
 <div class="modal-header">
     <div class="row">
-        <div class="col-12 justify-content-center">
-            Редагувати запис
-        </div>
+        <div ng-if="vm.action === 'update'" class="col-12 justify-content-center">Редагувати запис</div>
+        <div ng-if="vm.action === 'add'" class="col-12 justify-content-center">Створити запис</div>
     </div>
 </div>
 
@@ -14,17 +13,17 @@
         </div>
         <div class="col-6 align-self-center">
             <div>Дохід</div>
-            <input type="text" ng-model="vm.record.income"/><span> грн. коп.</span>
+            <input type="number" ng-model="vm.record.income"/><span> грн. коп.</span>
         </div>
     </div>
     <div class="row">
         <div class="col-6">
             <div>Сума повернутих коштів</div>
-            <input type="text" step="60" ng-model="vm.record.refund"/><span> грн. коп.</span>
+            <input type="number" ng-model="vm.record.refund"/><span> грн. коп.</span>
         </div>
         <div class="col-6">
             <div>Безоплатно отримані послуги</div>
-            <input type="text" ng-model="vm.record.freeReceived"/><span> грн. коп.</span>
+            <input type="number" ng-model="vm.record.freeReceived"/><span> грн. коп.</span>
         </div>
     </div>
     <div class="row">
@@ -47,7 +46,7 @@
         </div>
         <div class="col-6 align-self-center">
             <div>Сума</div>
-            <input type="text" ng-model="vm.record.clientId"/><span> грн. коп.</span>
+            <input type="number" ng-model="vm.record.anotherProfitIncome"/><span> грн. коп.</span>
         </div>
     </div>
 </div>

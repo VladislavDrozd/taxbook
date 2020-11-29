@@ -26,7 +26,6 @@
 
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.5.2-dist/">
 
     <!-- For uibModal directive -->
     <script src="../libs/angular-1.8.0/ui-bootstrap-tpls-0.14.3.js"></script>
@@ -71,25 +70,25 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Головна</a>
+                        <a class="nav-link" href="../index.jsp">Головна</a>
                     </li>
                     <li class="nav-item ml-3">
-                        <a class="nav-link" href="#">Електронна книга доходів</a>
+                        <a class="nav-link" href="incomeBook.component.html">Електронна книга доходів</a>
                     </li>
                     <li class="nav-item ml-3">
-                        <a class="nav-link" href="#">Клієнти</a>
+                        <a class="nav-link" href="client.component.html">Клієнти</a>
                     </li>
                     <li class="nav-item ml-3 calendar" >
-                        <a class="nav-link" href="#">Календар сплат</a>
+                        <a class="nav-link" href="calendar.html">Календар сплат</a>
                     </li>
-                    <button class="btn btn-toggler-out">Вийти з профілю</button>
+                    <button class="btn btn-toggler-out" ng-click="vm.invalidateSession()">Вийти з профілю</button>
                 </ul>
 
             </div>
 
             <form class="form-inline ml-auto">
 
-                <button class="btn btn-log-out">Вийти з профілю</button>
+                <button class="btn btn-log-out" ng-click="vm.invalidateSession()">Вийти з профілю</button>
 
             </form>
 
@@ -108,8 +107,10 @@
     </div>
 
     <article id="article">
-        <div class="row">
-            <!--add record-->
+        <div class="row justify-content-end">
+            <div class="col-6 add-record-button">
+                <button class="btn btn-outline-success btn-lg btn-block" ng-click="vm.addRecordModal()">Додати запис</button>
+            </div>
         </div>
         <!--BEGIN MAIN TABLE HEADER-->
         <div class="table-header abt abr abb abl" style="margin-left: 15px; margin-right: 15px">
@@ -282,16 +283,16 @@
 
                     <ul class="list-unstyled w-100">
                         <li>
-                            <a href="#!">Головна</a>
+                            <a href="../index.jsp">Головна</a>
                         </li>
                         <li>
-                            <a href="#!">Електронна книга доходів</a>
+                            <a href="incomeBook.component.html">Електронна книга доходів</a>
                         </li>
                         <li>
-                            <a href="#!">Клієнти</a>
+                            <a href="client.component.html">Клієнти</a>
                         </li>
                         <li>
-                            <a href="#!">Календар Виплат</a>
+                            <a href="calendar.html">Календар Виплат</a>
                         </li>
                     </ul>
 

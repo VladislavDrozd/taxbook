@@ -23,6 +23,26 @@
 
         activate();
 
+        function invalidateSession() {
+            $http.post(APP_LINK + 'login?action=logout')
+                .then(
+                     () => {
+                         window.location.href = "../index.jsp"; //This line redirects (redirect in Java does not work? because this method $http.get() асинхроннij).
+                    },
+                    () => {
+                        alert('Виникла помилка. Повідомте будь ласка розробників.');
+                    }
+                );
+            /*
+                url: APP_LINK + 'login?action=logout',
+                method: 'GET',
+            }).success(function(data, status, headers, config) {
+                $window.location.href = "index.jsp"; //This line redirects (redirect in Java does not work? because this method $http.get() асинхроннij).
+            }).error(function(data, status, headers, config) {
+                alert('Виникла помилка. Повідомте будь ласка розробників.');
+            });*/
+        }
+
         function activate() {
             loadRecords();
             loadUser();
@@ -30,13 +50,47 @@
             loadCookies();
         }
 
-        function printRecord(record) {
-            console.log(record);
+        function addRecordModal() {
+            const newRecord = {
+                anotherProfitIncome: 0,
+                anotherProfitType: '',
+                clientId: 0,
+                dateTime: '',
+                freeReceived: 0,
+                income: 0,
+                notes: '',
+                refund: 0,
+                revised: 0,
+                totalIncome: 0
+            };
+            const modalInstance = $uibModal.open({
+                animation: true,
+                backdrop: true,
+                templateUrl: '../html/createUpdateRecordModal.html',
+                controller: 'createUpdateRecordModal',
+                controllerAs: 'vm',
+                bindToController: true,
+                size: 'lg',
+                resolve: {
+                    record: function () {
+                        return newRecord;
+                    },
+                    action: function () {
+                        return 'add';
+                    }
+                }
+            });
+            modalInstance.result.then(function (returnRecord) {
+                addRecord(returnRecord);
+            }, function () {
+                /*Do nothing when modal close*/
+            });
         }
 
         function loadRecords() {
             $http.get(APP_LINK + 'app/incomeBook?action=getAllRecords')
                 .then(response => {
+                    if (response.data.length === 0) return;
                     editResponseListAddDateType(response.data, 'dateTime');
                     vm.recordList = response.data;
                     vm.recordDayList = responseListToRecordDayList(vm.recordList);

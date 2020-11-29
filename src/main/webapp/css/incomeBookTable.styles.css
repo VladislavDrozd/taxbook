@@ -160,3 +160,7 @@ article .row {
 .modal-body > .row {
     margin-bottom: 10px;
 }
+
+.add-record-button > .btn .btn-outline-success .btn-lg .btn-block {
+    background-color: #bdffca;
+}
