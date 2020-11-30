@@ -8,7 +8,7 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-6">
-            <div>Дата та час</div>
+            <div>Дата та час<sup><small>*(обов`язково)</small></sup></div>
             <input type="datetime-local" step="60" ng-model="vm.record.dateTime"/>
         </div>
         <div class="col-6 align-self-center">
@@ -33,7 +33,13 @@
         </div>
         <div class="col-6 align-self-center">
             <div>Клієнт</div>
-            <input type="text" ng-model="vm.record.clientId"/>
+            <!--<input type="text" ng-model="vm.record.clientId"/>-->
+            <select class="form-control"
+                ng-model="vm.record.clientId"
+                ng-options="client.clientId as client.name for client in vm.clientArray"
+            >
+                <option value=''></option>
+            </select>
         </div>
     </div>
     <div class="row">

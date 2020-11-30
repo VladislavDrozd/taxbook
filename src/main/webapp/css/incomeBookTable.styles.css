@@ -129,6 +129,7 @@ article .row {
 
 .record .record-cell > .record-cell-child {
     margin: auto;
+    display: block;
 }
 .record .record-note-cell {
     text-align: left;

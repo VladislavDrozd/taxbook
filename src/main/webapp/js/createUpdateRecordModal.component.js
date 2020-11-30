@@ -5,12 +5,13 @@
         .module('incomeBookTableModule')
         .controller('createUpdateRecordModal', Controller);
 
-    Controller.$inject = ['$uibModalInstance', 'record', 'action'];
+    Controller.$inject = ['$uibModalInstance', 'record', 'action', 'clientArray'];
 
-    function Controller($uibModalInstance, record, action) {
+    function Controller($uibModalInstance, record, action, clientArray) {
         const vm = this;
         vm.record = record; // get automaticaly from controller who call this modal window instance
         vm.action = action; // get automaticaly from controller who call this modal window instance
+        vm.clientArray = clientArray; // get automaticaly from controller who call this modal window instance
         vm.save = save;
         vm.close = close;
 

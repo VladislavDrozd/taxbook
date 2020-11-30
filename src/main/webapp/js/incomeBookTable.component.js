@@ -65,7 +65,7 @@
             };
             const modalInstance = $uibModal.open({
                 animation: true,
-                backdrop: true,
+                backdrop: 'static',
                 templateUrl: '../html/createUpdateRecordModal.html',
                 controller: 'createUpdateRecordModal',
                 controllerAs: 'vm',
@@ -77,6 +77,9 @@
                     },
                     action: function () {
                         return 'add';
+                    },
+                    clientArray: function () {
+                        return vm.clients;
                     }
                 }
             });

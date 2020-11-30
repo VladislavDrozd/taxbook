@@ -2,13 +2,14 @@ package dao;
 
 import filter.IncomeBookRecordFilter;
 import org.apache.log4j.Logger;
+import util.DAOUtil;
 import vo.IncomeBookRecordVO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncomeBookRecordDAO {
+public class IncomeBookRecordDAO extends DAOUtil {
     private static final Logger log = Logger.getLogger(IncomeBookRecordDAO.class);
 
     private Connection connection;
@@ -21,17 +22,17 @@ public class IncomeBookRecordDAO {
                 "(user_id, date_time, income, refund, revised, free_received, total_income, notes, client_id, another_profit_type, another_profit_income) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING record_id";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, userId);
-            ps.setTimestamp(2, vo.getDateTime());
-            ps.setDouble(3, vo.getIncome());
-            ps.setDouble(4, vo.getRefund());
-            ps.setDouble(5, vo.getRevised());
-            ps.setDouble(6, vo.getFreeReceived());
-            ps.setDouble(7, vo.getTotalIncome());
-            ps.setString(8, vo.getNotes());
-            ps.setLong(9, vo.getClientId());
-            ps.setString(10, vo.getAnotherProfitType());
-            ps.setDouble(11, vo.getAnotherProfitIncome());
+            setLong(ps, 1, userId);
+            setTimestamp(ps,2, vo.getDateTime());
+            setDouble(ps,3, vo.getIncome());
+            setDouble(ps,4, vo.getRefund());
+            setDouble(ps,5, vo.getRevised());
+            setDouble(ps,6, vo.getFreeReceived());
+            setDouble(ps,7, vo.getTotalIncome());
+            setString(ps,8, vo.getNotes());
+            setLong(ps, 9, vo.getClientId());
+            setString(ps, 10, vo.getAnotherProfitType());
+            setDouble(ps, 11, vo.getAnotherProfitIncome());
             ResultSet rs = ps.executeQuery();
             Long newRecordId = null;
             while (rs.next()) {
@@ -51,18 +52,18 @@ public class IncomeBookRecordDAO {
                         "another_profit_type = ?, another_profit_income = ? " +
                 "WHERE record_id = ? AND user_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setTimestamp(1, vo.getDateTime());
-            ps.setDouble(2, vo.getIncome());
-            ps.setDouble(3, vo.getRefund());
-            ps.setDouble(4, vo.getRevised());
-            ps.setDouble(5, vo.getFreeReceived());
-            ps.setDouble(6, vo.getTotalIncome());
-            ps.setString(7, vo.getNotes());
-            ps.setLong(8, vo.getClientId());
-            ps.setString(9, vo.getAnotherProfitType());
-            ps.setDouble(10, vo.getAnotherProfitIncome());
-            ps.setLong(11, vo.getRecordId());
-            ps.setLong(12, userId);
+            setTimestamp(ps, 1, vo.getDateTime());
+            setDouble(ps, 2, vo.getIncome());
+            setDouble(ps, 3, vo.getRefund());
+            setDouble(ps, 4, vo.getRevised());
+            setDouble(ps, 5, vo.getFreeReceived());
+            setDouble(ps, 6, vo.getTotalIncome());
+            setString(ps, 7, vo.getNotes());
+            setLong(ps, 8, vo.getClientId());
+            setString(ps, 9, vo.getAnotherProfitType());
+            setDouble(ps, 10, vo.getAnotherProfitIncome());
+            setLong(ps, 11, vo.getRecordId());
+            setLong(ps, 12, userId);
             return ps.executeUpdate();
         } catch (SQLException e) {
             log.error("DAO Cannot update record in income book in DB. addListOfIncomeBoorRecords()", e);
@@ -73,8 +74,8 @@ public class IncomeBookRecordDAO {
     public int deleteRecord(Long userId, Long recordId) throws SQLException {
         String sql = "DELETE FROM income_book WHERE user_id = ? AND record_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, userId);
-            ps.setLong(2, recordId);
+            setLong(ps, 1, userId);
+            setLong(ps, 2, recordId);
             return ps.executeUpdate();
         } catch (SQLException e) {
             log.error("DAO Cannot delete record in income book in DB. deleteRecord()", e);
@@ -85,7 +86,7 @@ public class IncomeBookRecordDAO {
     public int deleteRecordsByUserId(Long userId) throws SQLException {
         String sql = "DELETE FROM income_book WHERE user_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, userId);
+            setLong(ps, 1, userId);
             return ps.executeUpdate();
         } catch (SQLException e) {
             log.error("DAO Cannot delete records by userId in income book in DB. deleteRecordsByUserId()", e);
@@ -97,7 +98,7 @@ public class IncomeBookRecordDAO {
         String sql = "SELECT * FROM income_book WHERE user_id = ? " +
                 "ORDER BY date_time DESC";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, userId);
+            setLong(ps, 1, userId);
             ResultSet rs = ps.executeQuery();
             List<IncomeBookRecordVO> incomeBookRecordVOList = new ArrayList<>();
             while (rs.next()) {
