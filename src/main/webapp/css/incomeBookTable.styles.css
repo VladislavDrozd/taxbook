@@ -135,6 +135,20 @@ article .row {
     text-align: left;
 }
 
+.record .tatte-fur-kinder-card {
+    position: relative;
+}
+
+.record .tatte-fur-kinder-card > .client-card {
+    position: absolute;
+    background-color: white;
+    top: 100%;
+    width: 200%;
+    height: auto;
+    opacity: 0.9;
+    font-size: small;
+}
+
 /*MODAL WINDOW CREATE/UPDATE RECORD*/
 .modal-backdrop.fade {
     opacity: 0.5;

@@ -238,7 +238,22 @@
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.freeReceived | number: 2}}</div></div>
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.totalIncome | number: 2}}</div></div>
                                                 <div class="col-2 record-cell record-note-cell">{{record.notes}}</div>
-                                                <div class="col-1 record-cell"><div class="record-cell-child">{{record.clientVO.name}}</div></div>
+
+                                                <div class="col-1" ng-if="record.clientVO == null || record.clientVO == ''"></div>
+                                                <div class="col-1 record-cell tatte-fur-kinder-card" ng-init="showClientCard=false" ng-if="record.clientVO !== null" ng-click="showClientCard = !showClientCard">
+                                                    <div class="record-cell-child">
+                                                        {{record.clientVO.name}}<span style="cursor: context-menu">&#128270</span>
+                                                    </div>
+                                                    <div ng-if="showClientCard" class="client-card">
+                                                        <div>Контакти: {{record.clientVO.contacts}}</div>
+                                                        <div>Примітки: {{record.clientVO.notes}}</div>
+                                                        <div ng-if="record.clientVO.egrpou">
+                                                               ЄДРПОУ: {{record.clientVO.egrpou}}
+                                                        </div>
+                                                        <div>Початок співпраці: {{record.clientVO.createDate | date: 'dd/MM/yyyy'}}</div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.anotherProfitType}}</div></div>
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.anotherProfitIncome | number: 2}}</div></div>
                                                 <div class="col-1 dropdown record-cell">
