@@ -5,9 +5,9 @@
        .module('incomeBookTableModule')
        .controller('incomeBookTableController', Controller);
 
-   Controller.$inject = ['$http', '$cookies'];
+   Controller.$inject = ['$http', '$cookies', '$uibModal'];
 
-    function Controller($http, $cookies) {
+    function Controller($http, $cookies, $uibModal) {
         const vm = this;
         //const APP_LINK = 'http://localhost:8080/taxbook/';
         const APP_LINK = 'http://192.168.0.101:8080/taxbook/';
@@ -18,8 +18,13 @@
         vm.recordList = [];
         vm.recordDayList = [];
         vm.recordMonthList = [];
+        vm.filteredRecordList = [];
 
-        vm.printRecord = printRecord;
+        vm.updateRecordModal = updateRecordModal;
+        vm.deleteRecord = deleteRecord;
+        vm.addRecordModal = addRecordModal;
+
+        vm.invalidateSession = invalidateSession;
 
         activate();
 
@@ -90,6 +95,83 @@
             });
         }
 
+        function updateRecordModal(record) {
+            const modalInstance = $uibModal.open({
+                animation: true,
+                backdrop: 'static',
+                templateUrl: '../html/createUpdateRecordModal.html',
+                controller: 'createUpdateRecordModal',
+                controllerAs: 'vm',
+                bindToController: true,
+                size: 'lg',
+                resolve: {
+                    record: function () {
+                        return record;
+                    },
+                    action: function () {
+                        return 'update';
+                    },
+                    clientArray: function () {
+                        return vm.clients;
+                    }
+                }
+            });
+            modalInstance.result.then(function (returnRecord) {
+                    updateRecord(returnRecord);
+            }, function () {
+                /*Do nothing when modal close*/
+            });
+        }
+
+        function addRecord(record) {
+            $http.post(APP_LINK + 'app/incomeBook?action=addRecord', record)
+                .then((response => {
+                    console.log('RESPONSE:', response);
+                    if (response.status === 200) {
+                        alert('Запис успішно створено');
+                        loadRecords();
+                    } else {
+                        alert('Запис не створено. Зв`яжіться з адміністратором.');
+                    }
+                }), (
+                    () => {
+                        alert('Запис не створено. Зв`яжіться з адміністратором.');
+                    }));
+        }
+
+        function updateRecord(record) {
+            $http.post(APP_LINK + 'app/incomeBook?action=updateRecord', record)
+                .then((response => {
+                    console.log(response);
+                    if (response.data === '1') {
+                        alert('Запис успішно відредаговано');
+                        loadRecords();
+                    } else {
+                        alert('Запис не відредаговано. Зв`яжіться з адміністратором.');
+                        loadRecords();
+                    }
+                }), (
+                    () => {
+                        alert('Запис не відредаговано. Зв`яжіться з адміністратором.');
+                        loadRecords();
+                }));
+        }
+
+        function deleteRecord(record) {
+            $http.get(APP_LINK + 'app/incomeBook?action=deleteRecord&recordId=' + record.recordId)
+                .then(response => {
+                    if (response.data === '1') {
+                        alert('Запис успішно видалено.');
+                        loadRecords();
+                    } else {
+                        alert('Запис не видалено. Зв`яжіться з адміністратором.');
+                    }
+                },
+                    () => {
+                        alert('Запис не видалено. Зв`яжіться з адміністратором.');
+                });
+        }
+
         function loadRecords() {
             $http.get(APP_LINK + 'app/incomeBook?action=getAllRecords')
                 .then(response => {
@@ -132,7 +214,6 @@
         function responseListToRecordDayList(list) {
             let recordDayArr = [];
             let prevRecord = list.shift();
-            console.log('shiftzero', prevRecord);
             recordDayArr.push(new RecordDay());
             last(recordDayArr).recordArray.push(prevRecord);
                 const currentRecordDay = last(recordDayArr);
