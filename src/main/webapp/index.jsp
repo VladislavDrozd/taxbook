@@ -15,14 +15,25 @@
     <!-- Latest compiled JavaScript -->
     <script src="libs/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/main-style.css">
+    <link rel="stylesheet" href="css/article.css">
     <link rel="stylesheet" href="css/beforeLog.css">
+
     <!--   <link rel="stylesheet" href="style.css">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 </head>
 <body>
 
+<%--Preloader--%>
 
+<%--https://itchief.ru/javascript/how-to-make-preloader-for-site--%>
+
+<%--<div class="preloader">
+    <div class="preloader__row">
+        <div class="preloader__item"></div>
+        <div class="preloader__item"></div>
+    </div>
+</div>--%>
 
 
 <div class="container-fluid header" id="navbar">
@@ -48,9 +59,9 @@
 <div class="container-fluid p-0 page-header">
     <div class="container-bg text-center pr-4 pl-4 mb-4">
         <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook</span>
-            <p class="mt-3 mb-0"><small>Швидкий та зручний сервіс для разрахунку оподаткування та введення книги доходів ФОП України.
+            <p class="mt-3 mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та введення книги доходів ФОП України.
             </small></p>
-            <p class="about"><small>Електронна книга доходів. Календар сплат. База контактів контрагентів.</small></p></h1>
+            <p class="about"><small class="small-about">Електронна книга доходів. Календар сплат. База контактів контрагентів.</small></p></h1>
     </div>
 
 </div>
@@ -177,23 +188,23 @@
 
                     <div class="form-group">
                         <label for="usr">Ваше Ім'я:</label>
-                        <input name="name" type="text" class="form-control">
+                        <input name="name" type="text" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="pwd">Ваш пароль:</label>
-                        <input name="password" type="password" class="form-control" >
+                        <input name="password" type="password" class="form-control" required >
                     </div>
                     <div class="form-group">
                         <label for="eml">Ваш email:</label>
-                        <input name="email" type="email" class="form-control" >
+                        <input name="email" type="email" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Ваш телефон:</label>
-                        <input name="phone" type="phone" maxlength='13' class="form-control" placeholder="+">
+                        <input name="phone" type="phone" maxlength='13' class="form-control" placeholder="+" required>
                     </div>
                     <div class="form-group">
                         <label for="sel1">Ваша група:</label>
-                        <select name="taxGroup" class="form-control">
+                        <select name="taxGroup" class="form-control" required>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -226,10 +237,10 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <input name="name" type="email" class="form-control"  placeholder="email">
+                        <input name="name" type="email" class="form-control"  placeholder="email" required>
                     </div>
                     <div class="form-group">
-                        <input name="password" type="password" class="form-control"  placeholder="пароль">
+                        <input name="password" type="password" class="form-control"  placeholder="пароль" required>
                     </div>
 
 
@@ -238,7 +249,6 @@
 
                 <div class="modal-footer">
                     <button type="submit" name="submit" class="btn btn-submit" value="submit">Увійти</button>
-
                 </div>
 
             </form>
@@ -261,22 +271,22 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form class="form" action="login?action=register" method="post">
+            <form class="form" action="" method="post">
             <div class="modal-body">
 
                 <div class="form">
                     <div class="form-group">
                         <label for="usr">Ваше Ім'я:</label>
-                        <input type="text" class="form-control" id="usr">
+                        <input type="text" class="form-control" id="usr" required>
                     </div>
 
                     <div class="form-group">
                         <label for="eml">Ваш email:</label>
-                        <input type="email" class="form-control" id="eml">
+                        <input type="email" class="form-control" id="eml" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Повідомлення</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
                     </div>
 
                 </div>

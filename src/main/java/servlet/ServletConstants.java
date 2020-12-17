@@ -2,8 +2,8 @@ package servlet;
 
 public class ServletConstants {
 
-    //public static final String APP_LINK = "http://localhost:8080/taxbook/";
-    public static final String APP_LINK = "http://192.168.0.102:8080/taxbook/";
+    public static final String APP_LINK = "http://localhost:8080/taxbook/";
+   /* public static final String APP_LINK = "http://192.168.0.102:8080/taxbook/";*/
 
     public static final String LANGUAGE_UA = "ua";
     public static final String LANGUAGE_EN = "en";

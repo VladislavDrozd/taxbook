@@ -1,0 +1,43 @@
+
+
+            <div class="modal-header" ng-if="vm.action ==='add'">
+                <h4  class="modal-title">Додати Клієнта</h4>
+                <button type="button" class="close" data-dismiss="modal" ng-click="vm.close()">&times;</button>
+            </div>
+
+            <div class="modal-header" ng-if="vm.action ==='update'">
+                <h4  class="modal-title">Редагувати Клієнта</h4>
+                <button type="button" class="close" data-dismiss="modal" ng-click="vm.close()">&times;</button>
+            </div>
+
+           <form class="form">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="name">ФІО:</label>
+                        <input  type="text" class="form-control" id="name" ng-model="vm.client.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Контактна інформація:</label>
+                        <input  type="phone" class="form-control" id="phone" placeholder="+" maxlength='13' ng-model="vm.client.contacts" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="edrpou">edrpou:</label>
+                        <input  type="text" class="form-control" id="edrpou"  required ng-model="vm.client.edrpou">
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Замітки:</label>
+                        <textarea   class="form-control" id="notes" rows="3" ng-model="vm.client.notes"  required></textarea>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button ng-if="vm.action === 'update'" type="submit" class="btn btn-submit"  ng-click="vm.add()" >Редагувати</button>
+                    <button ng-if="vm.action === 'add'" type="submit" class="btn btn-submit"  ng-click="vm.add()" >Додати</button>
+                </div>
+        </form>
+
+
+
+

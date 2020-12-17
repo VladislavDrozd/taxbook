@@ -30,11 +30,11 @@
     height:50px;
 }
 
-.collapse .close{
+.navbar-collapse .close{
     display: none;
 }
 
-.close{
+.navbar-collapse .close{
     color:#254b5e;
     transform: scale(.5, 1);
     font-size: 30px;
@@ -108,6 +108,11 @@ footer .navigation .list-unstyled{
     .btn-toggler-out{
         display: block;
     }
+
+    .btn-toggler-out{
+        display: block;
+    }
+
     .navbar-toggler{
         margin-right: 10px!important;
     }
@@ -154,7 +159,7 @@ footer .navigation .list-unstyled{
         background-color: rgba(0,0,0,0.5);
     }
 
-    collapse.close{
+    .navbar-collapse .close{
         color:#254b5e;
         transform: scale(.5, 1);
         font-size: 30px;
@@ -167,7 +172,7 @@ footer .navigation .list-unstyled{
     .calendar{
         display: block;
     }
-    .close{
+    .navbar-collapse .close{
         display: block!important;
     }
 }

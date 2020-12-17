@@ -9,8 +9,8 @@
 
     function Controller($http, $cookies, $uibModal) {
         const vm = this;
-        //const APP_LINK = 'http://localhost:8080/taxbook/';
-        const APP_LINK = 'http://192.168.0.101:8080/taxbook/';
+        const APP_LINK = 'http://localhost:8080/taxbook/';
+        // const APP_LINK = 'http://192.168.0.101:8080/taxbook/';
 
         vm.language; // [en, ua]
         vm.user = {};
@@ -20,6 +20,7 @@
         vm.recordMonthList = [];
         vm.filteredRecordList = [];
 
+        // vm.printRecord = printRecord;
         vm.updateRecordModal = updateRecordModal;
         vm.deleteRecord = deleteRecord;
         vm.addRecordModal = addRecordModal;
@@ -185,6 +186,7 @@
                     console.log('LOADED', vm.recordMonthList);
                 });
         }
+
         function loadUser() {
             $http.get(APP_LINK + 'app/user?action=getUserById')
                 .then(response => {
@@ -193,6 +195,7 @@
                     console.log('LOADED', vm.user);
                 });
         }
+
         function loadClients() {
             $http.get(APP_LINK + 'app/client?action=getAllClients')
                 .then(response => {

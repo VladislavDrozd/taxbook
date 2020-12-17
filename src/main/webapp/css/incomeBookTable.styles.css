@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+.table-header{
+    margin-right: 15px;
+    margin-left: 15px;
+}
 
 .table-header .row {
     margin: 0;padding: 0; border-collapse: collapse;
@@ -30,6 +34,17 @@
 }  .table-header .col-12 {
     margin: 0; padding: 0; border-collapse: collapse;
 }
+
+.small .col-1, .small .col-2{
+    border-right: 1px solid white;
+}
+
+.month .row{
+    padding-top: 5px;
+}
+
+
+
 
 article .row {
     margin: 0; padding: 0; width: auto;
@@ -67,18 +82,85 @@ article .row {
 }
 
 
+
 /*BUTTONS*/
 .button-expand-collapse {
     margin: 2px 0 2px 0;
     width: 100%;
-    border-radius: 10px;
-    background-color: white;
+    /*border-radius: 10px;*/
+    border: none;
+    /*background-color: white;*/
     color: black;
+    background-color: rgba(255,255,255,0.5);
 }
+
+.btn-primary{
+    font-size: 17px;
+    border-radius: 0;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color:black;
+}
+
+.btn-outline-warning{
+    width: 30%;
+    height: 35px;
+    border-color: rgba(222, 128, 37, 0.6);
+    border-radius: 8px;
+}
+
+.btn-outline-warning:hover,.btn-outline-warning:active{
+    color:white;
+    background-color: rgb(222, 128, 37);
+    border-color: rgba(222, 128, 37, 0.6);
+}
+
+
+.btn-outline-primary{
+    width: 30%;
+    height: 35px;
+    border-color: rgb(38, 132, 237);
+    border-radius: 8px;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:active{
+    color:white;
+    border-color: rgb(19, 86, 160);
+    background-color:rgba(19, 86, 160, 0.8);
+}
+
+.btn-primary:hover{
+    background-color: #204969;
+    color:white;
+}
+/*
+
 .button-expand-collapse:hover {
     background-color: black;
     color: white;
 }
+*/
+
+.small .button-expand-collapse{
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: -20px!important;
+}
+
+.small .button-expand-collapse:focus, .small .button-expand-collapse:active, .small .button-expand-collapse:hover{
+    outline: none;
+    border: none;
+    background:none;
+    color: black;
+}
+
+
+
+
+
 
 
 
@@ -179,3 +261,34 @@ article .row {
 .add-record-button > .btn .btn-outline-success .btn-lg .btn-block {
     background-color: #bdffca;
 }
+/*
+
+@media (max-width:1500px){
+    .table-header .header-cell{
+        font-size: 12px!important;
+    }
+    article .row .col-12 .small{
+        font-size: 12px!important;
+    }
+
+    article .row .col-12 {
+        font-size: 13px!important;
+    }
+
+    .small .button-expand-collapse{
+        background: none;
+        border: none;
+        font-size: 14px;
+    }
+
+   !* .table-header{
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    article .row .col-12{
+        padding-right: 1px;
+        padding-left: 1px;
+    }*!
+
+
+}*/
