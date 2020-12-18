@@ -1,0 +1,91 @@
+.modal-body .form-control {
+    border-radius: 20px!important;
+    height: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #73899a;
+}
+
+.modal-body textarea{
+    min-height: 80px!important;
+    height: 100px;
+    max-height: 150px!important;
+}
+
+.modal-backdrop.fade {
+    opacity: 0.5;
+}
+.modal.fade.ng-isolate-scope.in.fade:not(.show) {
+    opacity: 1;
+}
+
+.modal-header{
+    padding-left: 33px;
+    padding-top: 30px;
+    padding-right: 25px;
+}
+
+
+.modal-open{
+    overflow: hidden;
+    margin-right: 0px!important;
+}
+
+
+.modal-footer{
+    justify-content: center;
+    border-top: none;
+}
+
+.modal-body .form-group{
+    margin-bottom: 40px;
+    margin-top: 15px;
+}
+
+.modal-body{
+    padding-bottom: 0px;
+}
+
+.modal-dialog{
+    color:#333333!important;
+    font-family: 'Museo Sans Cyrl 700', sans-serif!important;
+}
+
+.modal-footer{
+    margin-top: 0px;
+}
+
+.modal-dialog.modal-lg{
+    top:100px;
+}
+
+
+.btn-submit{
+    width:351px;
+    height:50px;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.modal-body{
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+
+.modal-body .form{
+    text-align: center!important;
+    font-size: 20px;
+}
+
+.modal-open{
+    margin-right: 0px!important;
+}
+
+@media (max-width: 500px) {
+    .modal-body{
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 18px;
+    }
+}
