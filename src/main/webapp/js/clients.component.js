@@ -34,10 +34,8 @@
 
 
         function activate() {
-           /* loadFilteredClients();*/
             loadClients();
             loadCookies();
-
         }
 
 
@@ -77,6 +75,7 @@
             modalInstance.result.then(function (returnClient) {
                 updateClient(returnClient);
             }, function () {
+                loadFilteredClients();
                 /* Do nothing when modal close*/
             });
         }
@@ -95,12 +94,12 @@
                     () => {
                         alert('Клієнт не додан. Зв`яжіться з адміністратором.');
                     }));
+
         }
 
 
 
         function modalOpenAdd() {
-
             const newClient = {
                 name:'',
                 contacts:'',
