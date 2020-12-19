@@ -87,6 +87,7 @@
                     if (response.data === '1') {
                         alert('Клієнта успішно відредаговано');
                         loadClients();
+                        loadFilteredClients();
                     } else {
                         alert('Клієнт не відредаговано. Зв`яжіться з адміністратором.');
                     }
