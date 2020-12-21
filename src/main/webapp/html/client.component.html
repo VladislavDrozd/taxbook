@@ -51,7 +51,7 @@
 
     <title>Clients</title>
 </head>
-<body ng-app="appModule" ng-controller="clientsController as c" ng-cloak>
+<body  ng-app="appModule" ng-controller="clientsController as c" ng-cloak>
 
 <div class="container-fluid sticky-top header" id="navbar">
     <nav class="navbar  navbar-expand-lg navbar-light bg-light ">
@@ -115,12 +115,12 @@
 
 </div>
 
-<article>
+<article  >
 
     <div class="side-button">
         <button class="float-md-left" data-toggle="modal" data-target="#addClientModal" ng-click="c.modalOpenAdd()">Додати Клієнта     <span style="font-size: 30px; margin-left: 15px">&#8594;</span></button>
     </div>
-    <div class="row">
+    <div  class="row">
         <div class="col-xl-9 form-filter">
             <form class="filter text-center">
                 <div class="form-group date">
@@ -134,7 +134,7 @@
                     <input  type="phone" maxlength='13'  class="form-control"  placeholder="+" ng-model="c.filterOptions.contacts">
                 </div>
 
-                <div class="form-group client">
+                <div class="form-group client" id="clients">
                     <label  class="">Клієнт:</label><br>
                     <select class="form-control" id="clientList" style="padding-top: 5px; padding-left: 3px"  ng-model="c.filterOptions.clientId"
                             ng-options="client.clientId as client.name for client in c.clients">
@@ -167,8 +167,8 @@
                                 <div class="card-body text-center">
 
                                     <div class="form-group">
-                                        <label>Контактний номер:</label>
-                                        <input type="phone" class="form-control" value="{{client.contacts}}">
+                                        <label>Контактна інформація:</label>
+                                        <textarea type="contacts" style="min-height: 45px; height:50px; max-height: 100px;" class="form-control">{{client.contacts}}</textarea>
                                     </div>
 
                                     <div class="form-group">
@@ -198,6 +198,8 @@
                         </form>
                         <button class="btn card-btn" ng-click="c.modalOpenUpdate(client)">Редагувати</button>
                     </div>
+
+
 
                 </div>
             </section>
@@ -277,10 +279,7 @@
     </div>
 </footer>
 
-<script>
 
-
-</script>
 
 </body>
 </html>

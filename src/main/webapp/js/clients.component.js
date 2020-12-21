@@ -26,17 +26,32 @@
         vm.modalOpenAdd = modalOpenAdd;
         vm.modalOpenUpdate = modalOpenUpdate;
         vm.loadFilteredClients = loadFilteredClients;
-        vm.updateClient = updateClient;
+
 
         activate();
+
+
 
 
         function activate() {
             loadClients();
             loadCookies();
+            onLoad();
         }
 
+        function onLoad() {
+            $("option[value='?']")
+                .attr("style", "display:none;")
+                .siblings().removeAttr("disabled");
+            $("option[value='?']")
+                .attr("disabled", "disabled;")
+                .siblings().removeAttr("disabled");
 
+
+            vm.filterOptions.clientId = $("div.clients select").val();
+            vm.loadFilteredClients();
+
+        }
 
 
         function invalidateSession() {
@@ -52,7 +67,6 @@
         }
 
         function modalOpenUpdate(client) {
-
             const modalInstance = $uibModal.open({
                 animation: true,
                 backdrop: 'static',
@@ -98,7 +112,6 @@
         }
 
 
-
         function modalOpenAdd() {
             const newClient = {
                 name:'',
@@ -139,6 +152,7 @@
                     if (response.status === 200) {
                         alert('Клієнта успішно додано');
                         loadClients();
+                        loadFilteredClients();
                     } else {
                         alert('Клієнт не додан. Зв`яжіться з адміністратором.');
                         loadClients();
@@ -153,13 +167,14 @@
 
 
         function loadFilteredClients(){
-            console.log("Find - ",vm.filterOptions);
-            $http.post(APP_LINK + 'app/client?action=getClientsByFilter', vm.filterOptions)
-                .then(response => {
-                    /*editResponseListAddDateType(response.data, 'createDate');*/
-                    vm.filterClients = response.data;
-                    console.log("Filter",vm.filterClients);
-                })
+                console.log("Find - ", vm.filterOptions);
+                $http.post(APP_LINK + 'app/client?action=getClientsByFilter', vm.filterOptions)
+                    .then(response => {
+                        /*editResponseListAddDateType(response.data, 'createDate');*/
+                        vm.filterClients = response.data;
+                        console.log("Filter", vm.filterClients);
+                    })
+
         }
 
         function loadClients() {
@@ -169,7 +184,9 @@
                     vm.clients = response.data;
                     console.log('LOADED', vm.clients);
                 });
+
         }
+
 
 
         function editResponseListAddDateType(list, property) {
