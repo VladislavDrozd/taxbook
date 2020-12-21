@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('incomeBookTableModule')
+        .module('appModule')
         .controller('createUpdateRecordModal', Controller);
 
     Controller.$inject = ['$uibModalInstance', 'record', 'action', 'clientArray'];

@@ -18,7 +18,7 @@ public class ClientDAO {
 
     public Long addClient(Long userId, ClientVO vo) throws SQLException {
         String sql = "INSERT INTO client (user_id, create_date, name, contacts, edrpou, notes) " +
-                "VALUES (?, NOW(), ?, ?, ?, ?) RETURNING user_id;";
+                "VALUES (?, NOW(), ?, ?, ?, ?) RETURNING client_id;";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, userId);
             ps.setString(2, vo.getName());

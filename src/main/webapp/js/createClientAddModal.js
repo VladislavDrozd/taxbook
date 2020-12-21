@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('clientsModule')
+        .module('appModule')
         .controller('createClientAddModal', Controller);
 
     Controller.$inject = ['$uibModalInstance', 'client','action'];
