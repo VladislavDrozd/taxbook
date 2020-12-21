@@ -29,7 +29,7 @@ public class LoginLogoutServlet extends HttpServlet {
 
     private void actionLogin(ServletUtil su) {
         try {
-            String name = su.getRequest().getParameter("name");
+            String name = su.getRequest().getParameter("login");
             String password = su.getRequest().getParameter("password");
 
             String languageParameter = su.getParameter(ServletConstants.COOKIE_NAME_LANGUAGE);

@@ -15,7 +15,29 @@
           text: '',
         };
 
+        vm.loginUser = {
+          login: null,
+          password: null
+        };
+
         vm.sendSimpleEmail = sendSimpleEmail;
+        vm.loginUser = loginUser;
+
+        function loginUser(form) {
+            if (!form.$valid) return;
+            $http.post(APP_LINK + 'login?action=login&login='+vm.loginUser.login+'&password='+vm.loginUser.password)
+                .then((response => {
+                    console.log('RESPONSE:', response);
+                    window.location.href = "html/incomeBook.component.html";
+                }), (
+                    (response) => {
+                        if (response.status === 401) {
+                            alert('Невiрний логiн або пароль');
+                        } else {
+                            alert('Щось пiшло не так!');
+                        }
+                    }));
+        }
 
         function sendSimpleEmail(form) {
             if (!form.$valid) return;

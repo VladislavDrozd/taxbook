@@ -158,15 +158,15 @@
                 <ul class="list-unstyled">
                     <li>
                         Владислав Дрозд -
-                        <a href="#!">https://github.com/VladislavDrozd</a>
+                        <a href="https://github.com/VladislavDrozd">https://github.com/VladislavDrozd</a>
                     </li>
                     <li>
                         Рилов Володимир -
-                        <a href="#!">https://github.com/VladimirRylov</a>
+                        <a href="https://github.com/VladimirRylov">https://github.com/VladimirRylov</a>
                     </li>
                     <li>
                         Анастасія Мустратова -
-                        <a href="#!">https://www.instagram.com/anastasia.mustratova/</a>
+                        <a href="https://www.instagram.com/anastasia.mustratova">https://www.instagram.com/anastasia.mustratova/</a>
                     </li>
                 </ul>
 
@@ -244,22 +244,18 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form class="form" action="login?action=login" method="post">
+            <form class="form" name="loginForm">
                 <div class="modal-body">
-
                     <div class="form-group">
-                        <input name="name" type="email" class="form-control"  placeholder="email" required>
+                        <input name="name" ng-model="vm.loginUser.login" type="email" class="form-control"  placeholder="email" required>
                     </div>
                     <div class="form-group">
-                        <input name="password" type="password" class="form-control"  placeholder="пароль" required>
+                        <input name="password" ng-model="vm.loginUser.password" type="password" class="form-control"  placeholder="пароль" required>
                     </div>
-
-
-
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" name="submit" class="btn btn-submit" value="submit">Увійти</button>
+                    <button type="submit" ng-click="vm.loginUser(loginForm)" name="submit" class="btn btn-submit" value="submit">Увійти</button>
                 </div>
 
             </form>

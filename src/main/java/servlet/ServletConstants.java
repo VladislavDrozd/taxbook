@@ -22,6 +22,7 @@ public class ServletConstants {
     public static final String LOGIN = "login";
     public static final String LOGOUT = "logout";
     public static final String REGISTER = "register";
+    public static final String SEND_SIMPLE_EMAIL = "sendSimpleEmail";
 
     /** UserServlet */
     public static final String GET_USER_BY_ID = "getUserById";
