@@ -2,10 +2,13 @@ package servlet;
 
 import logic.UserDelegate;
 import org.apache.log4j.Logger;
+import util.EmailUtil;
 import util.ServletUtil;
 import vo.UserVO;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.*;
+import java.io.IOException;
 import java.util.Date;
 
 public class LoginLogoutServlet extends HttpServlet {
@@ -18,6 +21,7 @@ public class LoginLogoutServlet extends HttpServlet {
             case ServletConstants.LOGIN : actionLogin(su); break;
             case ServletConstants.LOGOUT : actionLogout(su); break;
             case ServletConstants.REGISTER : actionRegister(su); break;
+            case ServletConstants.SEND_SIMPLE_EMAIL : actionSendSimpleEmail(su); break;
 
             default: su.sendDTO(ServletConstants.STATUS_BAD_REQUEST, "Unknown action: " + action);
         }
@@ -99,6 +103,22 @@ public class LoginLogoutServlet extends HttpServlet {
             su.sendError(e.getMessage());
         }
 
+    }
+
+    private void actionSendSimpleEmail(ServletUtil su) {
+        EmailUtil emailUtil = new EmailUtil();
+        String ename = null;
+        String eemail = null;
+        String etext = null;
+        try {
+            ename = su.getRequest().getParameter("ename");
+            eemail = su.getRequest().getParameter("eemail");
+            etext = su.getRequest().getParameter("etext");
+            emailUtil.sendSimpleMail("Taxbook FROM " + ename + ", " + eemail, etext);
+        } catch (Exception e) {
+            log.error("SERVLET Cannot send email. actionSendSimpleEmail()\n" + ename + " " + eemail + " " + etext );
+            su.sendError("Cannot send email");
+        }
     }
 
 }

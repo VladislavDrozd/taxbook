@@ -21,8 +21,19 @@
     <!--   <link rel="stylesheet" href="style.css">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+    <script src="libs/angular-1.8.0/angular.js"></script>
+    <script src="libs/angular-1.8.0/angular-cookies.js"></script>
+    <script src="libs/angular-1.8.0/angular-resource.js"></script>
+    <script src="libs/angular-1.8.0/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="libs/angular-1.8.0/angular-touch.js"></script>
+    <script src="libs/angular-1.8.0/angular-animate.js"></script>
+    <script src="js/appModule.module.js"></script>
+    <script src="js/appConstants.component.js"></script>
+    <script src="js/index.component.js"></script>
+
 </head>
-<body>
+<body ng-app="appModule" ng-controller="indexController as vm" ng-cloak>
 
 <%--Preloader--%>
 
@@ -151,11 +162,11 @@
                     </li>
                     <li>
                         Рилов Володимир -
-                        <a href="#!">https://github.com/VladislavDrozd</a>
+                        <a href="#!">https://github.com/VladimirRylov</a>
                     </li>
                     <li>
                         Анастасія Мустратова -
-                        <a href="#!">https://github.com/VladislavDrozd</a>
+                        <a href="#!">https://www.instagram.com/anastasia.mustratova/</a>
                     </li>
                 </ul>
 
@@ -271,29 +282,30 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form class="form" action="" method="post">
+            <form class="form" name="feedBackForm">
             <div class="modal-body">
 
                 <div class="form">
                     <div class="form-group">
-                        <label for="usr">Ваше Ім'я:</label>
-                        <input type="text" class="form-control" id="usr" required>
+                        <label>Ваше Ім'я:</label>
+                        <input type="text" class="form-control" ng-model="vm.email.name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="eml">Ваш email:</label>
-                        <input type="email" class="form-control" id="eml" required>
+                        <label>Ваш email:</label>
+                        <input type="email" class="form-control" ng-model="vm.email.email" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Повідомлення</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                        <label>Повідомлення</label>
+                        <textarea class="form-control" ng-model="vm.email.text" rows="3" required></textarea>
                     </div>
 
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="submit" name="submit" class="btn btn-submit">Відправити</button>
+                <button type="submit" ng-click="vm.sendSimpleEmail(feedBackForm)"
+                        class="btn btn-submit">Відправити</button>
             </div>
 
             </form>
