@@ -72,7 +72,7 @@
         <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook</span>
             <p class="mt-3 mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та введення книги доходів ФОП України.
             </small></p>
-            <p class="about"><small class="small-about">Електронна книга доходів. Календар сплат. База контактів контрагентів.</small></p></h1>
+            <p class="about"><small class="small-about">Електронна книга доходів. База контактів контрагентів.</small></p></h1>
     </div>
 
 </div>
@@ -198,7 +198,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="usr">Ваше Ім'я:</label>
+                        <label for="usr">ПІБ:</label>
                         <input name="name" type="text" class="form-control" required>
                     </div>
                     <div class="form-group">

@@ -74,7 +74,6 @@
                 <button class="close" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >X</button>
 
                 <ul class="navbar-nav">
-
                     <li class="nav-item">
                         <a class="nav-link" href="../index.jsp">Головна</a>
                     </li>
@@ -83,9 +82,6 @@
                     </li>
                     <li class="nav-item ml-3">
                         <a class="nav-link" href="client.component.html">Клієнти</a>
-                    </li>
-                    <li class="nav-item ml-3 calendar" >
-                        <a class="nav-link" href="calendar.html">Календар сплат</a>
                     </li>
                     <button class="btn btn-toggler-out" ng-click="vm.invalidateSession()">Вийти з профілю</button>
                 </ul>
@@ -104,10 +100,10 @@
 
     <div class="container-fluid p-0 page-header">
         <div class="container-bg text-center pr-4 pl-4 mb-4">
-            <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook2</span>
+            <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook</span>
                 <p class="mt-3 mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та введення книги доходів ФОП України.
                 </small></p>
-                <p class="about"><small class="small-about">Електронна книга доходів. Календар сплат. База контактів контрагентів.</small></p></h1>
+                <p class="about"><small class="small-about">Електронна книга доходів. База контактів контрагентів.</small></p></h1>
         </div>
 
     </div>
@@ -265,7 +261,7 @@
                                                 <div class="col-1 record-cell"><div class="record-cell-child">{{record.anotherProfitIncome | number: 2}}</div></div>
                                                 <div class="col-1 dropdown record-cell">
                                                     <button class="btn btn-primary dropdown-toggle btn-action" type="button" data-toggle="dropdown">
-                                                        Action<span class="caret"></span>
+                                                        Дія<span class="caret"></span>
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <button class="dropdown-item" ng-click="vm.updateRecordModal(record)">Редагувати &#9998</button>
@@ -310,9 +306,6 @@
                         </li>
                         <li>
                             <a href="client.component.html">Клієнти</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">Календар Виплат</a>
                         </li>
                     </ul>
 
