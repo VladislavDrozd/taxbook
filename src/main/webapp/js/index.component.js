@@ -9,6 +9,10 @@
 
     function Controller($http, $cookies, $uibModal, APP_LINK) {
         const vm = this;
+
+        vm.isLogin = false;
+        vm.currentUser = {};
+
         vm.email = {
           name: '',
           email: '',
@@ -22,6 +26,21 @@
 
         vm.sendSimpleEmail = sendSimpleEmail;
         vm.loginUser = loginUser;
+
+        activate();
+
+        function activate() {
+            getLoginUser();
+        }
+
+        function getLoginUser() {
+            $http.post(APP_LINK + 'app/user?action=getUserById')
+                .then((response => {
+                    console.log('RESPONSE:', response);
+                    vm.isLogin = true;
+                    vm.currentUser = response.data;
+                }), (() => {}));
+        }
 
         function loginUser(form) {
             if (!form.$valid) return;
