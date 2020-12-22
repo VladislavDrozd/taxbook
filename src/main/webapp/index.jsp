@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/main-style.css">
     <link rel="stylesheet" href="css/article.css">
     <link rel="stylesheet" href="css/beforeLog.css">
+    <link rel="stylesheet" href="css/afterLog.css">
 
     <!--   <link rel="stylesheet" href="style.css">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,11 +54,41 @@
             <img class="mr-2" src="img/logo.png" width="35px" >
             <span>TAXBOOK</span>
         </a>
+        <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" ></span>
+        </button>
+
+
+        <div class="collapse" id="navbarSupportedContent">
+            <div class="overlay"></div>
+        </div>
+
+
+        <div class="collapse navbar-collapse align-content-center" id="navbarSupportedContent">
+
+            <button class="close" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >X</button>
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="../index.jsp">Головна</a>
+                </li>
+                <li class="nav-item ml-3 EL">
+                    <a class="nav-link" href="incomeBook.component.html">Електронна книга доходів</a>
+                </li>
+                <li class="nav-item ml-3  clients">
+                    <a class="nav-link" href="client.component.html">Клієнти</a>
+                </li>
+                <button type="button" class="btn btn-toggler-out" data-toggle="modal" data-target="#regModal">Реєстрація</button>
+                <button  type="button" class="btn btn-toggler-out" data-toggle="modal" data-target="#logModal">Вхід</button>
+            </ul>
+
+        </div>
 
         <form class="form-inline ml-auto">
 
-            <button type="button" class="btn btn-reg mr-4" data-toggle="modal" data-target="#regModal">Реєстрація</button>
-            <button  type="button" class="btn btn-log-in" data-toggle="modal" data-target="#logModal">Вхід</button>
+            <button type="button" class="btn btn-reg" data-toggle="modal" data-target="#regModal">Реєстрація</button>
+            <button  type="button" class="btn btn-log-in ml-3" data-toggle="modal" data-target="#logModal">Вхід</button>
 
 
         </form>

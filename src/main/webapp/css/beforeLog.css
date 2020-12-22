@@ -56,7 +56,9 @@
     margin-right: 0px!important;
 }
 
-
+.navbar-collapse{
+    padding-left: 5%;
+}
 
 .form-control{
     border-radius: 20px!important;
@@ -76,7 +78,7 @@
 .btn-reg{
     width: 150px;
     height: 35px;
-    margin-left: 200px;
+    /*margin-left: 200px;*/
 }
 
 .btn-log-in{
@@ -103,6 +105,8 @@ article .annoying-reg{
 }
 
 
+
+
 article .annoying-reg .btn{
     color:white;
     border: 2px solid white;
@@ -126,10 +130,43 @@ article .annoying-reg .btn:hover{
     background-color:white;
 }
 
+@media (min-width: 1921px){
+    .navbar-collapse{
+        padding-left: 7%;
+    }
+
+}
+
+@media (max-width: 1190px){
+    .navbar-collapse .clients{
+        display: none;
+    }
+}
+
+@media (max-width: 1080px) {
+    .navbar-collapse .EL{
+        display: none;
+    }
+    .navbar-collapse{
+        padding-left: 9vw;
+    }
+}
+
 
 @media (max-width:991px){
     .btn-reg{
         margin-left: 5px!important;
+    }
+    .navbar-collapse .EL{
+        display: block;
+
+    }
+    .navbar-collapse .clients{
+        display: block;
+
+    }
+    .navbar-collapse{
+        padding-left: 0;
     }
 }
 
@@ -177,24 +214,23 @@ article .annoying-reg .btn:hover{
         height: 55px;
     }
 
-    .navbar-brand{
+   /* .navbar-brand{
         padding-left: 0;
         width: 100%;
         text-align: center;
         font-size: 40px!important;
-    }
+    }*/
 
+}
+
+@media (max-width:750px){
+    .form-inline{
+        display: none;
+    }
 }
 
 @media (max-width:540px){
 
-
-    .form-inline{
-        display: flex;
-        flex-direction: column;
-        margin-right: auto!important;
-        margin-left: auto!important;
-    }
 
     .btn-reg{
         width: 250px;
