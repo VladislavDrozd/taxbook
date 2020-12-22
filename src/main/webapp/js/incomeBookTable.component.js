@@ -58,7 +58,7 @@
             const newRecord = {
                 anotherProfitIncome: 0,
                 anotherProfitType: '',
-                clientId: 0,
+                clientId: null,
                 dateTime: '',
                 freeReceived: 0,
                 income: 0,
@@ -105,6 +105,9 @@
                 size: 'lg',
                 resolve: {
                     record: function () {
+                        if (record.clientId===0) {
+                            record.clientId = null;
+                        }
                         return record;
                     },
                     action: function () {
@@ -191,6 +194,9 @@
                     response.data.createDate = new Date(response.data.createDate);
                     vm.user = response.data;
                     console.log('LOADED', vm.user);
+                }, () => {
+                    alert("Ви не зареєструвалися як користувач!");
+                    window.location.href = "../index.jsp";
                 });
         }
 

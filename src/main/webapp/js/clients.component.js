@@ -12,6 +12,7 @@
 
         vm.language; // [en, ua]
         vm.user = {};
+        vm.currentUser = {};
         vm.clients = [];
         vm.filterClients = [];
         vm.filterOptions = {
@@ -37,6 +38,7 @@
             loadClients();
             loadCookies();
             onLoad();
+            getLoginUser();
         }
 
         function onLoad() {
@@ -51,6 +53,17 @@
             vm.filterOptions.clientId = $("div.clients select").val();
             vm.loadFilteredClients();
 
+        }
+
+        function getLoginUser() {
+            $http.post(APP_LINK + 'app/user?action=getUserById')
+                .then((response => {
+                    console.log('RESPONSE:', response);
+                    vm.currentUser = response.data;
+                }), (() => {
+                    alert("Ви не зареєструвалися як користувач!");
+                    window.location.href = "../index.jsp";
+                }));
         }
 
 

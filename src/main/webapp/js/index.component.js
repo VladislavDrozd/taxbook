@@ -26,6 +26,7 @@
 
         vm.sendSimpleEmail = sendSimpleEmail;
         vm.loginUser = loginUser;
+        vm.invalidateSession = invalidateSession;
 
         activate();
 
@@ -56,6 +57,18 @@
                             alert('Щось пiшло не так!');
                         }
                     }));
+        }
+
+        function invalidateSession() {
+            $http.post(APP_LINK + 'login?action=logout')
+                .then(
+                    () => {
+                        window.location.href = "index.jsp"; //This line redirects (redirect in Java does not work? because this method $http.get() асинхроннij).
+                    },
+                    () => {
+                        alert('Виникла помилка. Повідомте будь ласка розробників.');
+                    }
+                );
         }
 
         function sendSimpleEmail(form) {

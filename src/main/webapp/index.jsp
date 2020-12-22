@@ -64,34 +64,30 @@
         </div>
 
 
-        <div class="collapse navbar-collapse align-content-center" id="navbarSupportedContent">
+        <div ng-if="vm.isLogin" class="collapse navbar-collapse align-content-center" id="navbarSupportedContent">
 
             <button class="close" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >X</button>
 
             <ul class="navbar-nav">
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="../index.jsp">Головна</a>
+                    <a class="nav-link" href="index.jsp">Головна</a>
                 </li>
                 <li class="nav-item ml-3 EL">
-                    <a class="nav-link" href="incomeBook.component.html">Електронна книга доходів</a>
+                    <a class="nav-link" href="html/incomeBook.component.html">Електронна книга доходів</a>
                 </li>
                 <li class="nav-item ml-3  clients">
-                    <a class="nav-link" href="client.component.html">Клієнти</a>
+                    <a class="nav-link" href="html/client.component.html">Клієнти</a>
                 </li>
-                <button type="button" class="btn btn-toggler-out" data-toggle="modal" data-target="#regModal">Реєстрація</button>
-                <button  type="button" class="btn btn-toggler-out" data-toggle="modal" data-target="#logModal">Вхід</button>
             </ul>
+            <button class="btn" style="padding-left: 10px; padding-right: 10px" ng-click="vm.invalidateSession()">Вийти з профілю</button>
 
         </div>
 
-        <form class="form-inline ml-auto">
-
+        <div ng-if="!vm.isLogin" class="form-inline ml-auto">
             <button type="button" class="btn btn-reg" data-toggle="modal" data-target="#regModal">Реєстрація</button>
             <button  type="button" class="btn btn-log-in ml-3" data-toggle="modal" data-target="#logModal">Вхід</button>
-
-
-        </form>
+        </div>
 
     </nav>
 </div>
@@ -101,7 +97,7 @@
 <div class="container-fluid p-0 page-header">
     <div class="container-bg text-center pr-4 pl-4 mb-4">
         <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook</span>
-            <p class="mt-3 mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та введення книги доходів ФОП України.
+            <p class="mt-3 mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та ведення книги доходів ФОП України.
             </small></p>
             <p class="about"><small class="small-about">Електронна книга доходів. База контактів контрагентів.</small></p></h1>
     </div>
