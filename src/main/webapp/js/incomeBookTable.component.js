@@ -11,7 +11,7 @@
         const vm = this;
 
         vm.language; // [en, ua]
-        vm.user = {};
+        vm.currentUser = {};
         vm.clients = [];
         vm.recordList = [];
         vm.recordDayList = [];
@@ -192,8 +192,8 @@
             $http.get(APP_LINK + 'app/user?action=getUserById')
                 .then(response => {
                     response.data.createDate = new Date(response.data.createDate);
-                    vm.user = response.data;
-                    console.log('LOADED', vm.user);
+                    vm.currentUser = response.data;
+                    console.log('LOADED', vm.currentUser);
                 }, () => {
                     alert("Ви не зареєструвалися як користувач!");
                     window.location.href = "../index.jsp";

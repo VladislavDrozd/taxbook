@@ -96,7 +96,9 @@
 
 <div class="container-fluid p-0 page-header">
     <div class="container-bg text-center pr-4 pl-4 mb-4">
-        <h1 ><span style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook</span>
+        <h1 >
+            <span ng-if="!vm.isLogin" style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook</span>
+            <span ng-if="vm.isLogin"  style="font-family:'Museo Sans Cyrl 900', sans-serif ">ФОП {{vm.currentUser.name}}</span>
             <p class="mt-3 mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та ведення книги доходів ФОП України.
             </small></p>
             <p class="about"><small class="small-about">Електронна книга доходів. База контактів контрагентів.</small></p></h1>

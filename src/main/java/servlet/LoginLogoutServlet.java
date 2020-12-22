@@ -9,6 +9,7 @@ import vo.UserVO;
 import javax.mail.MessagingException;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 public class LoginLogoutServlet extends HttpServlet {
@@ -87,7 +88,13 @@ public class LoginLogoutServlet extends HttpServlet {
             //check if new user`s email already exists in database
             boolean isEmailIsAlreadyExists = userDelegate.checkIfUserEmailIsAlreadyExists(userVO.getEmail());
             if (isEmailIsAlreadyExists) {
-                su.sendDTO(ServletConstants.STATUS_OK, "Email " + userVO.getEmail() + " is already registered");
+                //su.sendDTO(ServletConstants.STATUS_OK, "Email " + userVO.getEmail() + " is already registered");
+                su.getResponse().setHeader("Content-Type", "text/html; charset=utf-8");
+                PrintWriter pw = su.getResponse().getWriter();
+                pw.println("<script type=\"text/javascript\">");
+                pw.println("alert('На цей email вже є зареєстрований користувач.');");
+                pw.println("window.location.href='"+ServletConstants.APP_LINK+"index.jsp';");
+                pw.println("</script>");
             } else {
                 Long userId = userDelegate.addUser(userVO);
                 HttpSession session = su.getRequest().getSession(true);
