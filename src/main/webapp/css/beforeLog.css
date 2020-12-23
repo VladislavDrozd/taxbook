@@ -143,17 +143,16 @@ article .annoying-reg .btn:hover{
     }
 }
 
-@media (max-width: 1080px) {
-    .navbar-collapse .EL{
-        display: none;
-    }
-    .navbar-collapse{
-        padding-left: 9vw;
+
+@media (min-width: 991px) {
+    .inLog{
+        margin-left: 6%!important;
     }
 }
 
-
 @media (max-width:991px){
+
+
     .btn-reg{
         margin-left: 5px!important;
     }
@@ -171,6 +170,7 @@ article .annoying-reg .btn:hover{
 }
 
 @media (max-width:590px){
+
 
     #feedbackModal small{
         display: none;
@@ -223,11 +223,7 @@ article .annoying-reg .btn:hover{
 
 }
 
-@media (max-width:750px){
-    .form-inline{
-        display: none;
-    }
-}
+
 
 @media (max-width:540px){
 
