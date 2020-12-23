@@ -20,7 +20,7 @@ public class TestServlet extends HttpServlet {
         ServletUtil su = new ServletUtil(req, resp);
         String action = req.getParameter(ServletConstants.ACTION);
         switch (action) {
-            //http://localhost:8080/taxbook/test?action=generateRecords&uId=1&q=10
+            //http://localhost:8080/taxbook/test?action=generateRecords&uId=1&q=1000&mC=20
             case ServletConstants.GENERATE_INCOME_BOOK_DATA : actionGenerateIncomeBookData(su); break;
             default: su.sendDTO(ServletConstants.STATUS_BAD_REQUEST, "Unknown action: " + action);
         }
@@ -31,7 +31,8 @@ public class TestServlet extends HttpServlet {
            TestDelegate testDelegate = new TestDelegate();
            Long userId = Long.parseLong(su.getRequest().getParameter("uId"));
            int quantity = Integer.parseInt(su.getRequest().getParameter("q"));
-           testDelegate.generateIncomeBookData(userId, quantity);
+           Long maxClientId = Long.parseLong(su.getRequest().getParameter("mC"));
+           testDelegate.generateIncomeBookData(userId, quantity, maxClientId);
        } catch (Exception e) {
            log.error("SERVLET TEST Cannot generate test income book data. handleGenerateIncomeBookData()", e);
            su.sendError(e.getMessage());

@@ -259,7 +259,7 @@
             recordMonthArr.push(new RecordMonth());
             last(recordMonthArr).recordDayArray.push(prevDayRecord);
                 const currentRecordMonth = last(recordMonthArr);
-                currentRecordMonth.month = getMonthName(prevDayRecord.day.getMonth());
+                currentRecordMonth.month = getMonthName(prevDayRecord.day.getMonth()) + " " + prevDayRecord.day.getFullYear();
                 currentRecordMonth.monthIncome = prevDayRecord.dayIncome;
                 currentRecordMonth.monthRefund = prevDayRecord.dayRefund;
                 currentRecordMonth.monthRevised = prevDayRecord.dayRevised;
@@ -274,7 +274,7 @@
                     recordMonthArr.push(new RecordMonth());
                 }
                 const currentRecordMonth = last(recordMonthArr);
-                currentRecordMonth.month = getMonthName(record.day.getMonth());
+                currentRecordMonth.month = getMonthName(record.day.getMonth()) + " " + record.day.getFullYear();
                 currentRecordMonth.monthIncome += record.dayIncome;
                 currentRecordMonth.monthRefund += record.dayRefund;
                 currentRecordMonth.monthRevised += record.dayRevised;

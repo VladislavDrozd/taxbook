@@ -129,7 +129,7 @@ public class IncomeBookRecordDAO extends DAOUtil {
 
     public void addListOfIncomeBookRecordsTest(List<IncomeBookRecordVO> records) throws SQLException {
         String sql = "INSERT INTO income_book " +
-                "(user_id, date_time, income, refund, revised, free_received, total_income, notes) " +
+                "(user_id, date_time, income, refund, revised, free_received, total_income, notes, client_id, another_profit_type, another_profit_income) " +
                 "VALUES " + recordListToString(records);
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
@@ -143,7 +143,8 @@ public class IncomeBookRecordDAO extends DAOUtil {
         StringBuilder sb = new StringBuilder();
         records.forEach(
                 r -> sb.append("(" + r.getUserId() + ", '" + r.getDateTime() + "', " + r.getIncome() + ", " + r.getRefund() + ", "
-                        + r.getRevised() + ", " + r.getFreeReceived() + ", " + r.getTotalIncome() + ", '" + r.getNotes() + "'),")
+                        + r.getRevised() + ", " + r.getFreeReceived() + ", " + r.getTotalIncome() + ", '" + r.getNotes() + "', "
+                        + r.getClientId() +", '"+ r.getAnotherProfitType() + "', " + r.getAnotherProfitIncome() + " ),")
         );
         String str = sb.toString();
         return str.substring(0, str.length()-1);

@@ -36,6 +36,6 @@ CREATE TABLE income_book (
     total_income NUMERIC(20, 2) NOT NULL, /* (6) = (4 + 5) */
     notes CHARACTER VARYING(1000),
     client_id INTEGER REFERENCES client(client_id),
-    another_profit_type CHARACTER VARYING(50), /* (7) вид дохода что облагается в 15%  */
+    another_profit_type CHARACTER VARYING(100), /* (7) вид дохода что облагается в 15%  */
     another_profit_income NUMERIC(20, 2) /* (8) сумма дохода что облагается налогом в 15% */
 );
