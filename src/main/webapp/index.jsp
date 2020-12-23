@@ -54,7 +54,7 @@
             <img class="mr-2" src="img/logo.png" width="35px" >
             <span>TAXBOOK</span>
         </a>
-        <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button ng-if="vm.isLogin" class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon" ></span>
         </button>
 
@@ -79,11 +79,16 @@
                 <li class="nav-item ml-3  clients">
                     <a class="nav-link" href="html/client.component.html">Клієнти</a>
                 </li>
+                <button class="btn btn-toggler-out" style="padding-left: 10px; padding-right: 10px" ng-click="vm.invalidateSession()">Вийти з профілю</button>
+
             </ul>
-            <button class="btn" style="padding-left: 10px; padding-right: 10px" ng-click="vm.invalidateSession()">Вийти з профілю</button>
+
+
 
         </div>
-
+        <div ng-if="vm.isLogin" class="form-inline ml-auto inLog" >
+        <button class="btn btn-log-out" style="padding-left: 10px; padding-right: 10px;" ng-click="vm.invalidateSession()">Вийти з профілю</button>
+        </div>
         <div ng-if="!vm.isLogin" class="form-inline ml-auto">
             <button type="button" class="btn btn-reg" data-toggle="modal" data-target="#regModal">Реєстрація</button>
             <button  type="button" class="btn btn-log-in ml-3" data-toggle="modal" data-target="#logModal">Вхід</button>
@@ -164,7 +169,7 @@
     </div>
     <div class="container-fluid annoying-reg d-flex justify-content-center">
 
-        <button type="button" class="btn btn-annoying-reg mr-5" data-toggle="modal" data-target="#regModal">Реєстрація</button>
+        <button ng-if="!vm.isLogin" type="button" class="btn btn-annoying-reg mr-5" data-toggle="modal" data-target="#regModal">Реєстрація</button>
         <button type="button" class="btn btn-feedback" data-toggle="modal" data-target="#feedbackModal">Зворотній Зв'язок</button>
 
     </div>
