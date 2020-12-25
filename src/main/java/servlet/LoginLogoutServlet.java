@@ -10,6 +10,7 @@ import javax.mail.MessagingException;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 public class LoginLogoutServlet extends HttpServlet {
@@ -17,6 +18,11 @@ public class LoginLogoutServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
         ServletUtil su = new ServletUtil(req, resp);
+        try {
+            su.getRequest().setCharacterEncoding("UTF-8"); //hardcode
+        } catch (UnsupportedEncodingException e) {
+            log.error(e);
+        }
         String action = req.getParameter(ServletConstants.ACTION);
         switch (action) {
             case ServletConstants.LOGIN : actionLogin(su); break;

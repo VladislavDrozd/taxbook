@@ -125,6 +125,8 @@ article .annoying-reg .btn{
 
 
 .btn-guide{
+    display: flex;
+    text-decoration: none;
     border:1px solid rgba(37, 75, 94, 0.2);
     width: 60px;
     height: 35px;
@@ -137,7 +139,7 @@ article .annoying-reg .btn{
 
 .btn-guide:hover {
    border: 1px solid rgba(37, 75, 94, 0.8);
-
+    text-decoration: none;
 }
 
 

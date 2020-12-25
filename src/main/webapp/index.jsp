@@ -88,7 +88,7 @@
                     <a class="nav-link" href="html/client.component.html">Клієнти</a>
                 </li>
                 <button class="btn btn-toggler-out" style="padding-left: 10px; padding-right: 10px" ng-click="vm.invalidateSession()">Вийти з профілю</button>
-                <button class="btn btn-toggler-out">User Guide</button>
+                <button class="btn btn-toggler-out">Керівництво Користувача</button>
             </ul>
 
 
@@ -97,13 +97,13 @@
 
         <div ng-if="vm.isLogin" class="form-inline ml-auto inLog" >
             <button class="btn btn-log-out" style="padding-left: 10px; padding-right: 10px;" ng-click="vm.invalidateSession()">Вийти з профілю</button>
-            <button class="btn-guide">?</button>
+            <a class="btn-guide" href="user_manual.pdf"><div style="margin: auto">&#167</div></a>
         </div>
 
         <div ng-if="!vm.isLogin" class="form-inline ml-auto notLoged">
             <button type="button" class="btn btn-reg" data-toggle="modal" data-target="#regModal">Реєстрація</button>
             <button  type="button" class="btn btn-log-in ml-3" data-toggle="modal" data-target="#logModal">Вхід</button>
-            <button class="btn-guide">?</button>
+            <a class="btn-guide" href="user_manual.pdf"><div style="margin: auto">&#167</div></a>
         </div>
 
 
@@ -120,7 +120,7 @@
 
 
 
-            <p class=" mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та ведення книги доходів ФОП України.
+            <p class=" mb-0"><small class="small-about">Швидкий та зручний сервіс для розрахунку оподаткування та ведення книги доходів ФОП України.
             </small></p>
 
             <p class="about"><small class="small-about">Електронна книга доходів. База контактів контрагентів.</small></p></h1>

@@ -6,6 +6,11 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
+    <context-param>
+        <param-name>APP_LINK</param-name>
+        <param-value>http://192.168.0.101:8080/taxbook/</param-value>
+    </context-param>
+
     <resource-ref>
         <res-ref-name>jdbc/taxbook</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
