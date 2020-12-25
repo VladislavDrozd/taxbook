@@ -124,6 +124,22 @@ article .annoying-reg .btn{
 
 
 
+.btn-guide{
+    border:1px solid rgba(37, 75, 94, 0.2);
+    width: 60px;
+    height: 35px;
+    font-size: 20px;
+    background: none;
+    margin-left: 15px;
+    color:#333333;
+    transition: 0.3s;
+}
+
+.btn-guide:hover {
+   border: 1px solid rgba(37, 75, 94, 0.8);
+
+}
+
 
 article .annoying-reg .btn:hover{
     color:#254b5e;
@@ -169,12 +185,21 @@ article .annoying-reg .btn:hover{
     }
 }
 
+@media (max-width: 680px){
+    .btn-log-out{
+        display: none;
+    }
+}
+
+
+
 @media (max-width:590px){
 
 
     #feedbackModal small{
         display: none;
     }
+
 
     article .annoying-reg .btn{
         height:55px;
@@ -205,14 +230,7 @@ article .annoying-reg .btn:hover{
         font-size: 20px!important;
     }
 
-    .btn-reg{
-        width: 200px;
-        height: 55px;
-    }
-    .btn-log-in{
-        width: 200px;
-        height: 55px;
-    }
+
 
    /* .navbar-brand{
         padding-left: 0;
@@ -276,4 +294,65 @@ article .annoying-reg .btn:hover{
 
 
 
+}
+
+@media (max-width: 660px){
+    .navbar-brand.notLoged{
+        width: 100%;
+        text-align: center;
+        padding-left: 0px;
+    }
+    .btn-reg{
+        width: 200px;
+        height: 55px;
+    }
+    .btn-log-in{
+        width: 200px;
+        height: 55px;
+    }
+
+    .form-inline.notLoged{
+        margin-left: auto!important;
+        margin-right: auto!important;
+
+    }
+    .form-inline.notLoged .btn-guide{
+       width: 100px;
+        height: 55px;
+    }
+}
+
+@media (max-width: 570px) {
+    .form-inline.notLoged{
+        flex-direction: column;
+
+    }
+
+    .form-inline.notLoged .btn-guide{
+        width: 30vw;
+        height:50px ;
+    }
+
+    .btn-reg{
+        width: 75vw;
+        height: 55px;
+        font-size: 20px;
+        margin-left: 0!important;
+        margin-bottom: 25px;
+    }
+    .btn-log-in{
+        width: 75vw;
+        height: 55px;
+        font-size: 20px;
+        margin-left: 0!important;
+        margin-bottom: 25px;
+    }
+
+}
+
+
+@media (max-width: 380px){
+    .form-inline.inLog .btn-guide{
+        display: none;
+    }
 }

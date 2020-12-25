@@ -50,10 +50,18 @@
 
 <div class="container-fluid header" id="navbar">
     <nav class="navbar  navbar-expand-lg navbar-light bg-light ">
-        <a class="navbar-brand" href="#">
+        <a ng-if="vm.isLogin" class="navbar-brand" href="#">
             <img class="mr-2" src="img/logo.png" width="35px" >
             <span>TAXBOOK</span>
         </a>
+
+        <a ng-if="!vm.isLogin" class="navbar-brand notLoged" href="#">
+            <img class="mr-2" src="img/logo.png" width="35px" >
+            <span>TAXBOOK</span>
+        </a>
+
+
+
         <button ng-if="vm.isLogin" class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon" ></span>
         </button>
@@ -80,19 +88,24 @@
                     <a class="nav-link" href="html/client.component.html">Клієнти</a>
                 </li>
                 <button class="btn btn-toggler-out" style="padding-left: 10px; padding-right: 10px" ng-click="vm.invalidateSession()">Вийти з профілю</button>
-
+                <button class="btn btn-toggler-out">User Guide</button>
             </ul>
 
 
 
         </div>
+
         <div ng-if="vm.isLogin" class="form-inline ml-auto inLog" >
-        <button class="btn btn-log-out" style="padding-left: 10px; padding-right: 10px;" ng-click="vm.invalidateSession()">Вийти з профілю</button>
+            <button class="btn btn-log-out" style="padding-left: 10px; padding-right: 10px;" ng-click="vm.invalidateSession()">Вийти з профілю</button>
+            <button class="btn-guide">?</button>
         </div>
-        <div ng-if="!vm.isLogin" class="form-inline ml-auto">
+
+        <div ng-if="!vm.isLogin" class="form-inline ml-auto notLoged">
             <button type="button" class="btn btn-reg" data-toggle="modal" data-target="#regModal">Реєстрація</button>
             <button  type="button" class="btn btn-log-in ml-3" data-toggle="modal" data-target="#logModal">Вхід</button>
+            <button class="btn-guide">?</button>
         </div>
+
 
     </nav>
 </div>
@@ -104,9 +117,17 @@
         <h1 >
             <span ng-if="!vm.isLogin" style="font-family:'Museo Sans Cyrl 900', sans-serif ">Taxbook</span>
             <span ng-if="vm.isLogin"  style="font-family:'Museo Sans Cyrl 900', sans-serif ">ФОП {{vm.currentUser.name}}</span>
-            <p class="mt-3 mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та ведення книги доходів ФОП України.
+
+
+
+            <p class=" mb-0"><small class="small-about">Швидкий та зручний сервіс для разрахунку оподаткування та ведення книги доходів ФОП України.
             </small></p>
+
             <p class="about"><small class="small-about">Електронна книга доходів. База контактів контрагентів.</small></p></h1>
+
+        <p class="guide">
+
+        </p>
     </div>
 
 </div>
