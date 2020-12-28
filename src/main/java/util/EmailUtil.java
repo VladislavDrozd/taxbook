@@ -13,11 +13,12 @@ import java.util.Properties;
 
 public class EmailUtil {
 
-    private final String SENDER_EMAIL_ADDRESS = "mail:)";
-    private final String SENDER_EMAIL_PASSWORD = "password:)";
+    // need special google admin account
+    private final String SENDER_EMAIL_ADDRESS = "...";
+    private final String SENDER_EMAIL_PASSWORD = "...";
     private final String SENDER_HOST = "smtp.gmail.com";
     private final String SENDER_PORT = "587";
-    private final String RECEIVER_EMAIL_ADDRESS = "mail:)";
+    private final String RECEIVER_EMAIL_ADDRESS = "...";
 
     public void sendSimpleMail(String subject, String text) throws MessagingException {
 

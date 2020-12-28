@@ -127,9 +127,18 @@ public class LoginLogoutServlet extends HttpServlet {
             ename = su.getRequest().getParameter("ename");
             eemail = su.getRequest().getParameter("eemail");
             etext = su.getRequest().getParameter("etext");
-            emailUtil.sendSimpleMail("Taxbook FROM " + ename + ", " + eemail, etext);
+            //emailUtil.sendSimpleMail("Taxbook FROM " + ename + ", " + eemail, etext);
+            log.warn("EMAIL BEGIN");
+            log.warn("EMAIL BEGIN");
+            log.warn("EMAIL BEGIN");
+            log.warn("Sender->"+ ename);
+            log.warn("SenderEmail->"+ eemail);
+            log.warn("Text->"+ etext);
+            log.warn("EMAIL END");
+            log.warn("EMAIL END");
+            log.warn("EMAIL END");
         } catch (Exception e) {
-            log.error("SERVLET Cannot send email. actionSendSimpleEmail()\n" + ename + " " + eemail + " " + etext );
+            log.error("SERVLET Cannot send email. actionSendSimpleEmail()\n" + ename + " " + eemail + " " + etext, e );
             su.sendError("Cannot send email");
         }
     }
