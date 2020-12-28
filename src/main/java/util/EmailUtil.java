@@ -21,7 +21,6 @@ public class EmailUtil {
     private final String RECEIVER_EMAIL_ADDRESS = "...";
 
     public void sendSimpleMail(String subject, String text) throws MessagingException {
-
         Properties properties = new Properties();
         properties.put("mail.smtp.host", SENDER_HOST);
         properties.put("mail.smtp.port", SENDER_PORT);
