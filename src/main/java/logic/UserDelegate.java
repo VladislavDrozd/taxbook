@@ -84,6 +84,10 @@ public class UserDelegate {
                 userId = Long.parseLong(uId);
             } else return null;
 
+            for (int i = 0; i < 100; i++) {
+                System.out.println("just some new useless logic " + i);
+            }
+
             String passwordDBHash = userIdAndHashPasswordFromDB.get("hashPassword");
 
             boolean isPasswordMatch = ArgonInitialize.getInstance()
