@@ -114,6 +114,7 @@ public class UserDelegate {
             throw e;
         } finally {
             DBPool.closeConnection(connection);
+
         }
     }
 
