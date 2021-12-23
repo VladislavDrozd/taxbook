@@ -7,7 +7,6 @@ import de.mkammerer.argon2.Argon2Helper;
 import def.DBPool;
 import logic.hash.ArgonInitialize;
 import org.apache.log4j.Logger;
-import vo.ClientVO;
 import vo.UserVO;
 /* Argon Types */
 import java.io.Console;
@@ -119,12 +118,13 @@ public class UserDelegate {
         }
     }
 
-    public UserVO getClientById(Long clientId) throws Exception {
+    public ClientVO getClientById(Long clientId) throws Exception {
         Connection connection = null;
         try {
             connection = DBPool.getConnection();
-            UserDAO userDAO = new UserDAO(connection);
-            return userDAO.getUserById(clientId);
+            ClientDAO clientDAO = new ClientDAO(connection);
+
+            return clientDAO.getClientById(clientId);
         } catch (Exception e) {
             log.error("DELEGATE Cannot get client by ID. getClientById()", e);
             throw e;
