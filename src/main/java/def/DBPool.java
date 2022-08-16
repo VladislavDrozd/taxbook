@@ -1,19 +1,37 @@
 package def;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.log4j.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBPool {
+public final class DBPool {
     private static final Logger log = Logger.getLogger(DBPool.class);
-    private static DataSource pool;
+    //private static DataSource pool;
+    private DBPool(){}
+    private static ComboPooledDataSource pool;
 
     public static void initializeConnectionPool() throws NamingException {
-            InitialContext initContext = new InitialContext();
-            pool = (DataSource) initContext.lookup("java:comp/env/jdbc/taxbook");
+            //InitialContext initContext = new InitialContext();
+            //pool = (DataSource) initContext.lookup("java:comp/env/jdbc/taxbook");
+        try {
+            pool = new ComboPooledDataSource();
+            pool.setJdbcUrl(AppConstants.DB_LINK);
+            pool.setUser(AppConstants.DB_USER);
+            pool.setPassword(AppConstants.DB_PASSWORD);
+            pool.setDriverClass("org.postgresql.Driver");
+
+            // Optional Settings
+            pool.setInitialPoolSize(3);
+            pool.setMinPoolSize(2);
+            pool.setMaxPoolSize(5);
+        } catch (Exception e) {
+            log.error("DBPool Cannot CREATE DBPOOL", e);
+        }
     }
 
     public static Connection getConnection() throws SQLException {

@@ -7,6 +7,7 @@ import de.mkammerer.argon2.Argon2Helper;
 import def.DBPool;
 import logic.hash.ArgonInitialize;
 import org.apache.log4j.Logger;
+import vo.ClientVO;
 import vo.UserVO;
 /* Argon Types */
 import java.io.Console;

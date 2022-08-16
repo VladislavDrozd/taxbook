@@ -18,12 +18,13 @@ public class AppConstants {
 
     public static void initializeProperties() throws IOException {
         Properties properties = new Properties();
-        //properties.load(new FileReader(new File("C:\\Users\\Vodka\\Desktop\\Table\\Settings\\taxbook\\src\\main\\resources\\app.properties")));
-        //APP_LINK = properties.getProperty("APP_LINK");
-        //DB_LINK = properties.getProperty("DB_LINK");
-        //DB_NAME = properties.getProperty("DB_NAME");
-        //DB_USER = properties.getProperty("DB_USER");
-        //DB_PASSWORD = properties.getProperty("DB_PASSWORD");
+        //properties.load(new FileReader(("classpath:app.properties")));
+        properties.load(new FileReader(("D:\\learning_spring\\idea_projects\\taxbook\\src\\main\\resources\\app.properties")));
+        APP_LINK = properties.getProperty("APP_LINK");
+        DB_LINK = properties.getProperty("DB_LINK");
+        DB_NAME = properties.getProperty("DB_NAME");
+        DB_USER = properties.getProperty("DB_USER");
+        DB_PASSWORD = properties.getProperty("DB_PASSWORD");
     }
 
 }

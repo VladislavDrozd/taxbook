@@ -4,7 +4,7 @@
     angular
         .module('appModule')
 
-        .constant('APP_LINK', 'http://vladd.fun:49330/taxbook/');
+        .constant('APP_LINK', 'http://localhost:8080/taxbook/');
 
 
 })();

@@ -8,7 +8,7 @@
 
     <context-param>
         <param-name>APP_LINK</param-name>
-        <param-value>http://vladd.fun:49330/taxbook/</param-value>
+        <param-value>http://localhost:8080/taxbook/</param-value>
     </context-param>
 
     <resource-ref>
